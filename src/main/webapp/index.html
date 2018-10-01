@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title>Ian's Reimbursement Expense System</title>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+		crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="topnav">
+		<div class="topnav-left">
+			<a href="#">Ian's Expense Reimbursement System</a>
+		</div>
+  		<div class="topnav-right">
+			<a id="logout" href=""></a>
+		  </div>
+	</div>
+	<div id="load" style="padding-top: 50px; text-align: center;">
+		<div style="text-align: center">
+			<h2>Sign In</h2>
+			<table style="margin: 0 auto;">
+				<tr>
+					<td><input id="name" type="text" placeholder="Username"></td>
+				</tr>
+				<tr>
+					<td><input id="password" type="password" placeholder="Password"></td>
+				</tr>
+			</table>
+			<br>
+			<button class="btn btn-primary"
+				onclick="login('/Project1/Servlet/Login')">Login</button>
+			<pre id="error"></pre>
+		</div>
+	</div>
+</body>
+<script src="functions.js"></script>
+</html>
