@@ -34,8 +34,6 @@
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc7</artifactId>
 			<version>12.1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.baseDir}/ojdbc7-12.1.0.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
