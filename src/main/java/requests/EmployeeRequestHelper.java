@@ -137,7 +137,7 @@ public class EmployeeRequestHelper {
 		try {
 			fileData = jobject.get("file").toString().replace("\"", "");
 			filename = "" + System.currentTimeMillis();
-			s3url = uploadToS3(fileData, filename);
+			s3url = "";//uploadToS3(fileData, filename);
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
