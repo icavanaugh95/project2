@@ -6,6 +6,7 @@ target/
 .settings/
 
 .classpath
+bin/
 
 # Compiled class file
 *.class
