@@ -8,5 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Project2 Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-
+<build>
+	<finalName>Project2</finalName>
+</build>
 </project>
