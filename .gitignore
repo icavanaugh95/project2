@@ -8,6 +8,9 @@ target/
 .classpath
 bin/
 
+# properties files
+*.properties
+
 # Compiled class file
 *.class
 
