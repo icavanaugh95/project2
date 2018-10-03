@@ -1,8 +1,10 @@
+// Dont use this a test
+// This is more of a playground
+
 package basictests;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -29,13 +31,26 @@ public class LoginPage {
 		String url = props.getProperty("url");
 		String username = props.getProperty("username");
 		String password = props.getProperty("password");
-		System.out.println(username);
-		System.out.println(password);
+
 		driver.get(url);
 		login.getUsername().sendKeys(username);
 		login.getPassword().sendKeys(password);
 		login.getLoginButton().click();
-		Thread.sleep(5000);
+		login.getManageBatchLink().click();
+		login.getLogoLink().click();
+//		login.getHomeLink().click();
+//		login.getAccessBatchLink().click();
+//		login.getQualityAuditLink().click();
+//		login.getPanelLink().click();
+//		login.getReportsLink().click();
+//		login.getSettingsDropdown().click();
+//		login.getTrainersLinkFromSettings().click();
+//		login.getSettingsDropdown().click();
+//		login.getLocationsLinkFromSettings().click();
+//		login.getSettingsDropdown().click();
+//		login.getCategoryLinkFromSettings().click();
+
+		Thread.sleep(1500); // dont use this in actualy tests...
 		driver.quit();
 	}
 }
