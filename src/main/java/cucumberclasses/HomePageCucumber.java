@@ -1,12 +1,14 @@
 package cucumberclasses;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
-import cucumber.api.PendingException;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -28,11 +30,19 @@ public class HomePageCucumber {
 		driver = new ChromeDriver();
 		login = new MainPage(driver);
 		home = new HomePage(driver);
-		driver.get("https://dev-caliber.revature.tech/");
 		
-		// TODO Pull this information from another source
-		login.getUsername().sendKeys("calibot@revature.com");
-		login.getPassword().sendKeys("*6Ak4-&kXnNTfTh6");
+		Properties props = new Properties();
+		FileInputStream in = new FileInputStream("src/main/resources/login.properties");
+		props.load(in);
+		
+		String url = props.getProperty("url");
+		String username = props.getProperty("username");
+		String password = props.getProperty("password");
+		
+		driver.get(url);
+		
+		login.getUsername().sendKeys(username);
+		login.getPassword().sendKeys(password);
 		login.getLoginButton().click();
 		login.waitForNavBar();
 		
