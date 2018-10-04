@@ -8,6 +8,9 @@ target/
 .classpath
 bin/
 
+#project file
+.project
+
 # properties files
 *.properties
 
