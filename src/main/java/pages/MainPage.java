@@ -27,7 +27,7 @@ public class MainPage {
 	}
 	
 	
-	private void waitForNavBar() {
+	public void waitForNavBar() {
 		wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a[ui-sref='vp.manage']")));
 	}
