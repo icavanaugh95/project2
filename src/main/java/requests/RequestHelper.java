@@ -11,9 +11,7 @@ public class RequestHelper {
 		String uri = request.getRequestURI();
 		System.out.println(uri);
 		
-		if(uri.equals("/Project2/Servlet/getSomething")) {
-			System.out.println("made it here");
+		if(uri.equals("/Project2/Servlet/getSomething")) 
 			response.getWriter().append("[{\"name\":\"Adam\",\"Age\":19},{\"name\":\"Brian\",\"Age\":24},{\"name\":\"Jackie\",\"Age\":23}]");
-		}
 	}
 }
