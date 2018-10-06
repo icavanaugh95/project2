@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class QualityAuditPage {
 	private static WebDriver driver;
@@ -49,5 +51,20 @@ public class QualityAuditPage {
 		}
 		
 		return trainerElements;
+	}
+	
+	public List<WebElement> getWeeks(){
+		String [] weeks = driver.findElement(By.cssSelector("body > div > ui-view > ui-view > div.container.ng-scope > div:nth-child(1) >"
+				+ " div > div.col-sm-12.col-md-12.col-lg-12.top5.ng-scope > ul"))
+				.getAttribute("innerHTML")
+				.split("class=\"ng-binding\">Week");
+		List<WebElement> weekElements = new ArrayList<WebElement>();
+		
+		for(int i = 1; i < weeks.length; i++) {
+			System.out.println(weeks[i]);
+			System.out.println("------------------");
+		}
+			
+		return weekElements;
 	}
 }
