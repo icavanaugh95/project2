@@ -19,6 +19,16 @@ public class TrainerPage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Create Trainer")));
 	}
 	
+	public void waitForAddTrainerMenuOpen() {
+		wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("trainerModalLabel")));
+	}
+	
+	public void waitForAddTrainerMenuClosed() {
+		wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("trainerModalLabel")));
+	}
+	
 	public WebElement getCreateTrainerButton() {
 		waitForTrainerPageOpen();
 		return driver.findElement(By.linkText("Create Trainer"));
@@ -42,4 +52,40 @@ public class TrainerPage {
 		return driver.findElement(By.id("trainerModalLabel"));
 	}
 	
+	public WebElement getAddTrainerSaveButton() {
+		waitForAddTrainerMenuOpen();
+		return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > input:nth-child(1)"));
+	}
+	
+	public WebElement getTrainerNameTextBox() {
+		waitForAddTrainerMenuOpen();
+		return driver.findElement(By.id("trainerName"));
+	}
+	
+	public WebElement getEmailTextBox() {
+		waitForAddTrainerMenuOpen();
+		return driver.findElement(By.id("trainerEmail"));
+	}
+	
+	public WebElement getTitleTextBox() {
+		waitForAddTrainerMenuOpen();
+		return driver.findElement(By.id("Title"));
+	}
+	
+	public WebElement getTierDropdown() {
+		waitForAddTrainerMenuOpen();
+		return driver.findElement(By.id("trainerTier"));
+	}
+	
+	public WebElement getSaveButton() {
+		waitForAddTrainerMenuOpen();
+		return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > input:nth-child(1)"));
+	}
+	
+	//Only works if there is one table (i.e. one <tbody>) on the page
+	public WebElement getAllTrainersTable() {
+		waitForTrainerPageOpen();
+		//waitForAddTrainerMenuClosed();
+		return driver.findElement(By.tagName("tbody"));
+	}
 }

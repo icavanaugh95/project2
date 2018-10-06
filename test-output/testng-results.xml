@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="2" passed="2">
+<testng-results skipped="0" failed="1" total="4" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="17746" started-at="2018-10-05T23:14:03Z" finished-at="2018-10-05T23:14:21Z">
+  <suite name="Default suite" duration-ms="38932" started-at="2018-10-06T01:59:20Z" finished-at="2018-10-06T01:59:59Z">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test name="Default test" duration-ms="17746" started-at="2018-10-05T23:14:03Z" finished-at="2018-10-05T23:14:21Z">
+    <test name="Default test" duration-ms="38932" started-at="2018-10-06T01:59:20Z" finished-at="2018-10-06T01:59:59Z">
       <class name="cucumberclasses.NGCucumberRunner">
-        <test-method status="PASS" signature="setUpClass()[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="setUpClass" is-config="true" duration-ms="172" started-at="2018-10-05T19:14:03Z" finished-at="2018-10-05T19:14:03Z">
+        <test-method status="PASS" signature="setUpClass()[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="setUpClass" is-config="true" duration-ms="188" started-at="2018-10-05T21:59:20Z" finished-at="2018-10-05T21:59:20Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method status="PASS" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="feature" duration-ms="8042" started-at="2018-10-05T19:14:03Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2018-10-05T19:14:11Z">
+        <test-method status="PASS" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="feature" duration-ms="9785" started-at="2018-10-05T21:59:20Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2018-10-05T21:59:30Z">
           <params>
             <param index="0">
               <value>
@@ -25,7 +25,73 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method status="PASS" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="feature" duration-ms="9446" started-at="2018-10-05T19:14:11Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2018-10-05T19:14:21Z">
+        <test-method status="FAIL" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="feature" duration-ms="10690" started-at="2018-10-05T21:59:30Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2018-10-05T21:59:41Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Adding a Trainer with valid input works.]]>
+              </value>
+            </param>
+          </params>
+          <exception class="cucumber.runtime.CucumberException">
+            <message>
+              <![CDATA[java.lang.AssertionError: expected [40] but found [0]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: expected [40] but found [0]
+	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
+	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1128)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:782)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1244)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+	at org.testng.TestNG.run(TestNG.java:1064)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: java.lang.AssertionError: expected [40] but found [0]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at org.testng.Assert.assertEquals(Assert.java:399)
+	at cucumberclasses.TrainerPageCucumber.a_new_Trainer_should_appear_on_the_list_of_Trainers_with_the_proper_fields_I_filled_in(TrainerPageCucumber.java:164)
+	at ✽.Then a new Trainer should appear on the list of Trainers with the proper fields I filled in.(src/test/resources/AddTrainerValidInput.feature:9)
+]]>
+            </full-stacktrace>
+          </exception> <!-- cucumber.runtime.CucumberException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- feature -->
+        <test-method status="PASS" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="feature" duration-ms="9402" started-at="2018-10-05T21:59:41Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2018-10-05T21:59:50Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Checks all links on the Home Page]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- feature -->
+        <test-method status="PASS" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="feature" duration-ms="8785" started-at="2018-10-05T21:59:50Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2018-10-05T21:59:59Z">
           <params>
             <param index="0">
               <value>
@@ -36,7 +102,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- feature -->
-        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="tearDownClass" is-config="true" duration-ms="7" started-at="2018-10-05T19:14:21Z" finished-at="2018-10-05T19:14:21Z">
+        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="tearDownClass" is-config="true" duration-ms="4" started-at="2018-10-05T21:59:59Z" finished-at="2018-10-05T21:59:59Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
