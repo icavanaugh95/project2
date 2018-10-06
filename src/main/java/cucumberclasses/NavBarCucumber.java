@@ -1,22 +1,30 @@
 package cucumberclasses;
 
 
-import cucumber.api.PendingException;
+import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import pages.HomePage;
+import pages.MainPage;
 
 public class NavBarCucumber {
+	
+	public static HomePage home;
+	public static MainPage login;
+	public static WebDriver driver;
 	
 
 	@When("^I click on the Home button$")
 	public void i_click_on_the_Home_button() throws Throwable {
-	    
+	   login.getHomeLink().click();
 	}
 
 	@Then("^I should see the Home page information$")
 	public void i_should_see_the_Home_page_information() throws Throwable {
-	    
+//	    Assert.assertEquals(actual, expected);
 	}
 
 	@When("^I click on the Manage Batch$")
