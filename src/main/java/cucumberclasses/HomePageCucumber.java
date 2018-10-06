@@ -59,7 +59,7 @@ public class HomePageCucumber {
 	@Then("^I will see the User Guide on github$")
 	public void i_will_see_the_User_Guide_on_github() throws Throwable {
 	    
-		Assert.assertEquals(driver.getTitle(), "Home Â· revaturelabs/caliber Wiki Â· GitHub");
+		Assert.assertEquals(driver.getTitle(), "Home · revaturelabs/caliber Wiki · GitHub");
 		
 		driver.quit();
 	}
