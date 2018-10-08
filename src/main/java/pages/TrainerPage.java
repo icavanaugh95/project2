@@ -14,17 +14,17 @@ public class TrainerPage {
 		this.driver = driver;
 	}
 	
-	public void waitForTrainerPageOpen() {
+	private void waitForTrainerPageOpen() {
 		wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Create Trainer")));
 	}
 	
-	public void waitForAddTrainerMenuOpen() {
+	private void waitForAddTrainerMenuOpen() {
 		wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("trainerModalLabel")));
 	}
 	
-	public void waitForAddTrainerMenuClosed() {
+	private void waitForAddTrainerMenuClosed() {
 		wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("trainerModalLabel")));
 	}
@@ -84,8 +84,8 @@ public class TrainerPage {
 	
 	//Only works if there is one table (i.e. one <tbody>) on the page
 	public WebElement getAllTrainersTable() {
-		waitForTrainerPageOpen();
 		//waitForAddTrainerMenuClosed();
+		waitForTrainerPageOpen();
 		return driver.findElement(By.tagName("tbody"));
 	}
 }

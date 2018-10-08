@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="1" total="5" passed="4">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="49367" started-at="2018-10-08T14:34:10Z" finished-at="2018-10-08T14:34:59Z">
+    <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="feature" class="cucumber.api.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test name="Default test" duration-ms="49367" started-at="2018-10-08T14:34:10Z" finished-at="2018-10-08T14:34:59Z">
+      <class name="cucumberclasses.NGCucumberRunner">
+        <test-method status="PASS" signature="setUpClass()[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="setUpClass" is-config="true" duration-ms="204" started-at="2018-10-08T10:34:10Z" finished-at="2018-10-08T10:34:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method status="PASS" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="feature" duration-ms="8544" started-at="2018-10-08T10:34:10Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2018-10-08T10:34:19Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Adding Trainer with Email with whitespace before or after it is valid]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- feature -->
+        <test-method status="PASS" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="feature" duration-ms="9687" started-at="2018-10-08T10:34:19Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2018-10-08T10:34:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Add Trainer menu can open]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- feature -->
+        <test-method status="FAIL" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="feature" duration-ms="11235" started-at="2018-10-08T10:34:28Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2018-10-08T10:34:40Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Adding a Trainer with valid input works.]]>
+              </value>
+            </param>
+          </params>
+          <exception class="cucumber.runtime.CucumberException">
+            <message>
+              <![CDATA[java.lang.AssertionError: expected [40] but found [0]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[cucumber.runtime.CucumberException: java.lang.AssertionError: expected [40] but found [0]
+	at cucumber.api.testng.TestNGCucumberRunner.runCucumber(TestNGCucumberRunner.java:69)
+	at cucumber.api.testng.AbstractTestNGCucumberTests.feature(AbstractTestNGCucumberTests.java:21)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:643)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:820)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1128)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
+	at org.testng.TestRunner.privateRun(TestRunner.java:782)
+	at org.testng.TestRunner.run(TestRunner.java:632)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1244)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1169)
+	at org.testng.TestNG.run(TestNG.java:1064)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:114)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: java.lang.AssertionError: expected [40] but found [0]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:513)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:135)
+	at org.testng.Assert.assertEquals(Assert.java:116)
+	at org.testng.Assert.assertEquals(Assert.java:389)
+	at org.testng.Assert.assertEquals(Assert.java:399)
+	at cucumberclasses.TrainerPageCucumber.a_new_Trainer_should_appear_on_the_list_of_Trainers_with_the_proper_fields_I_filled_in(TrainerPageCucumber.java:164)
+	at ✽.Then a new Trainer should appear on the list of Trainers with the proper fields I filled in.(src/test/resources/AddTrainerValidInput.feature:9)
+]]>
+            </full-stacktrace>
+          </exception> <!-- cucumber.runtime.CucumberException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- feature -->
+        <test-method status="PASS" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="feature" duration-ms="10515" started-at="2018-10-08T10:34:40Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2018-10-08T10:34:50Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Checks all links on the Home Page]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- feature -->
+        <test-method status="PASS" signature="feature(cucumber.api.testng.CucumberFeatureWrapper)[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="feature" duration-ms="9044" started-at="2018-10-08T10:34:50Z" description="Runs Cucumber Feature" data-provider="features" finished-at="2018-10-08T10:34:59Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Opening the Trainers page works]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- feature -->
+        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:cucumberclasses.NGCucumberRunner@28d25987]" name="tearDownClass" is-config="true" duration-ms="48" started-at="2018-10-08T10:34:59Z" finished-at="2018-10-08T10:34:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- cucumberclasses.NGCucumberRunner -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

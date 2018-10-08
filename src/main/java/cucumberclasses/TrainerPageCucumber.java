@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -148,6 +149,7 @@ public class TrainerPageCucumber {
 
 	//TODO: test if the new trainer added matches the one I typed
 	//TODO: Fix bug why tableLengthAfter returns 0
+	//Should not pass. Caliberbot apparently has no authorization to add trainers.
 	@Then("^a new Trainer should appear on the list of Trainers with the proper fields I filled in\\.$")
 	public void a_new_Trainer_should_appear_on_the_list_of_Trainers_with_the_proper_fields_I_filled_in() throws Throwable {
 		//Make sure that a new trainer was added in
@@ -160,6 +162,58 @@ public class TrainerPageCucumber {
 		driver.quit();
 
 		Assert.assertEquals(tableLengthBefore, tableLengthAfter-1);
+	}
+
+	@Given("^the Trainer name field is filled in.$")
+	public void the_trainer_name_field_is_filled_in() {
+		trainer.getTrainerNameTextBox().sendKeys("Wibble Wobble McGee");
+	}
+	
+	@When("^the Email field has a valid email$")
+	public void the_Email_field_has_a_valid_email() throws Throwable {
+		trainer.getEmailTextBox().sendKeys("    	brugggenheim@email.com");
+		
+		/*//Validate
+		String email = trainer.getEmailTextBox().getText();
+		try {
+			boolean emailValid = false;
+			String errorStr = "";
+			if(email.contains("@")) {
+				; //S'all good
+			} else {
+				errorStr = "ERROR: Email does not contain '@'.";
+			}
+			
+			if (!emailValid) {
+				throw new IllegalArgumentException(errorStr);
+			}
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		}*/
+	}
+
+	@When("^the email has whitespace to the left or right of it$")
+	public void the_email_has_whitespace_to_the_left_or_right_of_it() throws Throwable {
+		String email = trainer.getEmailTextBox().getText();
+		trainer.getEmailTextBox().sendKeys(" 	  ");
+		;
+		
+		//Check for trailing or leading whitespace (only checks first and last characters)
+		try {
+			if (Character.isWhitespace(email.charAt(0)) && Character.isWhitespace(email.charAt(email.length() - 1))){
+				;
+			} else {
+				throw new IllegalArgumentException("ERROR: ");
+			}
+		} catch(IllegalArgumentException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Then("^an error message should NOT appear below the ?Email? textbox saying ?Please enter an email address\\.?$")
+	public void an_error_message_should_NOT_appear_below_the_Email_textbox_saying_Please_enter_an_email_address() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
 	}
 
 
