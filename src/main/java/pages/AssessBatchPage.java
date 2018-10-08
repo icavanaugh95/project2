@@ -150,7 +150,7 @@ public class AssessBatchPage {
 		return driver.findElement(By.cssSelector("#trainer-assess-table > div > div > ul > ul > div.form-group.col-lg-12.col-md-12.col-sm-12.overall-feedback > div > a > span"));
 	}
 
-	public List<WebElement> getAssociateLinks(){
+	public List<WebElement> getTaineeLinks(){
 
 
 		StringBuilder elementStr = new StringBuilder();
@@ -186,7 +186,7 @@ public class AssessBatchPage {
 	}
 
 
-	public List<WebElement> getAssociateNotesBox(){
+	public List<WebElement> getTraineeNotesBox(){
 
 
 		StringBuilder elementStr = new StringBuilder();
@@ -216,7 +216,7 @@ public class AssessBatchPage {
 
 	}
 
-	public List<WebElement> getAssociateRows(){
+	public List<WebElement> getTraineeRows(){
 
 
 		StringBuilder elementStr = new StringBuilder();
