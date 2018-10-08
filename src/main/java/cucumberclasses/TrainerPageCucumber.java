@@ -151,7 +151,6 @@ public class TrainerPageCucumber {
 	@Then("^a new Trainer should appear on the list of Trainers with the proper fields I filled in\\.$")
 	public void a_new_Trainer_should_appear_on_the_list_of_Trainers_with_the_proper_fields_I_filled_in() throws Throwable {
 		//Make sure that a new trainer was added in
-		trainer.waitForAddTrainerMenuClosed();
 		try {
 			List<WebElement> rows = trainer.getAllTrainersTable().findElements(By.tagName("tr"));
 			tableLengthAfter = rows.size();
