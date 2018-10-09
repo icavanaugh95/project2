@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+//TODO: Check that all elements can be accessed fully at any time (i.e. no bugs below)
 public class TrainerPage {
 	private static WebDriver driver;
 	private static WebDriverWait wait;
@@ -52,11 +53,6 @@ public class TrainerPage {
 		return driver.findElement(By.id("trainerModalLabel"));
 	}
 	
-	public WebElement getAddTrainerSaveButton() {
-		waitForAddTrainerMenuOpen();
-		return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > input:nth-child(1)"));
-	}
-	
 	public WebElement getTrainerNameTextBox() {
 		waitForAddTrainerMenuOpen();
 		return driver.findElement(By.id("trainerName"));
@@ -79,13 +75,40 @@ public class TrainerPage {
 	
 	public WebElement getSaveButton() {
 		waitForAddTrainerMenuOpen();
-		return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > input:nth-child(1)"));
+		//return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > input:nth-child(1)"));
+		return driver.findElement(By.linkText("Save"));
 	}
 	
 	//Only works if there is one table (i.e. one <tbody>) on the page
 	public WebElement getAllTrainersTable() {
-		//waitForAddTrainerMenuClosed();
+		//waitForAddTrainerMenuClosed();	//can cause test to halt
 		waitForTrainerPageOpen();
 		return driver.findElement(By.tagName("tbody"));
+	}
+	
+	//TODO: Get "id" of Email textbox error message of "Please fill out this field" or "Please enter an email addrees"
+	public WebElement getEmailErrorMessage() {
+		return null;
+	}
+	
+	//TODO: Get "id" of Name textbox error message of "Please fill out this field"
+	public WebElement getNameErrorMessage() {
+		return null;
+	}
+	
+	//TODO: Get "id" of Title textbox error message of "Please fill out this field"
+		public WebElement getTitleErrorMessage() {
+			return null;
+		}
+	
+	public WebElement getCloseButton() {
+		waitForAddTrainerMenuOpen();
+		//return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > input:nth-child(1)"))
+		return driver.findElement(By.linkText("Close"));
+	}
+	
+	public WebElement getGrayX() {
+		//return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(1)"))
+		return driver.findElement(By.linkText("x"));
 	}
 }

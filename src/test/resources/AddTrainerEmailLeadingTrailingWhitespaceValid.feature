@@ -8,4 +8,4 @@ Scenario:
 	When the Email field has a valid email
   	But the email has whitespace to the left or right of it
   	And I click Save
-	Then an error message should NOT appear below the Email textbox saying “Please enter an email address.”
+	Then an error message should NOT appear below the Email textbox saying Please enter an email address.
