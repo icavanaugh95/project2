@@ -11,7 +11,7 @@
       <class name="cucumberclasses.NGCucumberRunner">
         <methods>
           <include name="setUpClass"/>
-          <include name="feature" invocation-numbers="0"/>
+          <include name="feature"/>
           <include name="tearDownClass"/>
         </methods>
       </class> <!-- cucumberclasses.NGCucumberRunner -->
