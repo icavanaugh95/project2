@@ -1,4 +1,4 @@
-Feature: The Add Trainer menu can close by clicking the grax x on the top right.
+Feature: The Add Trainer menu can close by clicking the gray x on the top right.
 
 @AddTrainerMenuGrayX
 Scenario:

@@ -1,4 +1,4 @@
-Feature: 
+Feature: Adding a Trainer with no title will not work.
 
 @AddTrainerTitleBlank
 Scenario:

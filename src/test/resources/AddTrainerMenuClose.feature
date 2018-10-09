@@ -1,4 +1,4 @@
-Feature: The Add Trainer menu can close by clicking the Clise button.
+Feature: The Add Trainer menu can close by clicking the Close button.
 
 @AddTrainerMenuClose
 Scenario:

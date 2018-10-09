@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -80,6 +81,7 @@ public class TrainerPageCucumber {
 		} catch (NoSuchElementException e){
 			Assert.fail("The trainers page is not open on the browser.");
 			trainerPageOpen = false;
+			driver.quit();
 		}
 
 		driver.quit();
@@ -101,6 +103,7 @@ public class TrainerPageCucumber {
 		} catch (NoSuchElementException e){
 			Assert.fail("The trainers page is not open on the browser.");
 			trainerMenuOpen = false;
+			driver.quit();
 		}
 
 		Assert.assertEquals(trainerMenuOpen, true);
@@ -158,6 +161,7 @@ public class TrainerPageCucumber {
 			tableLengthAfter = rows.size();
 		} catch (NoSuchElementException e){
 			e.printStackTrace();
+			driver.quit();
 		}
 		driver.quit();
 
@@ -169,50 +173,31 @@ public class TrainerPageCucumber {
 	
 	@When("^the Email field has a valid email$")
 	public void the_Email_field_has_a_valid_email() throws Throwable {
-		trainer.getEmailTextBox().sendKeys("    	brugggenheim@email.com");		///Added whitespace to the left
-		
-		/*//Validate
-		String email = trainer.getEmailTextBox().getText();
-		try {
-			boolean emailValid = false;
-			String errorStr = "";
-			if(email.contains("@")) {
-				; //S'all good
-			} else {
-				errorStr = "ERROR: Email does not contain '@'.";
-			}
-			
-			if (!emailValid) {
-				driver.quit();
-				throw new IllegalArgumentException(errorStr);
-			}
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		}*/
+		trainer.getEmailTextBox().sendKeys("   brugggenheim@email.com   ");		///Added whitespace to the left and right of email
 	}
 
 	@When("^the email has whitespace to the left or right of it$")
 	public void the_email_has_whitespace_to_the_left_or_right_of_it() throws Throwable {
-		trainer.getEmailTextBox().sendKeys(" 	  ");
-		String email = trainer.getEmailTextBox().getText();
+		String email = trainer.getEmailTextBox().getAttribute("value");
+		System.out.println("Email: " + email);
 		
 		//Check for trailing or leading whitespace (only checks first and last characters)
 		try {
 			if (!Character.isWhitespace(email.charAt(0)) || !Character.isWhitespace(email.charAt(email.length() - 1))){
-				driver.quit();
 				throw new IllegalArgumentException("ERROR: No whitespace to the left or right.");
 			}
 		} catch(IllegalArgumentException e) {
 			e.printStackTrace();
+			driver.quit();
 		}
 	}
 
 	//TODO: find "id" of error message of "Please enter an email address"
 	@Then("^an error message should NOT appear below the Email textbox saying Please enter an email address\\.$")
 	public void an_error_message_should_NOT_appear_below_the_Email_textbox_saying_Please_enter_an_email_address() throws Throwable {
-	   Assert.assertEquals(trainer.getEmailErrorMessage().getSize(), 0);	//Error message is not visible
+		Assert.assertEquals(trainer.getEmailErrorMessage().getSize(), new Dimension(0, 0));	//Error message is not visible
 	    
-	   driver.quit();
+		driver.quit();
 	}
 	
 	@Given("^the Trainer name field is filled in$")
@@ -228,7 +213,7 @@ public class TrainerPageCucumber {
 	//TODO: Get "id" of Name textbox error message of "Please fill out this field"
 	@Then("^an error message should appear below the Name textbox saying Please fill out this field\\.$")
 	public void an_error_message_should_appear_below_the_Name_textbox_saying_Please_fill_out_this_field() throws Throwable {
-	    Assert.assertNotEquals(trainer.getNameErrorMessage().getSize(), 0);		//Error message is visible
+	    Assert.assertNotEquals(trainer.getNameErrorMessage().getSize(), new Dimension(0, 0));		//Error message is visible
 	    
 	    driver.quit();
 	}
@@ -241,7 +226,7 @@ public class TrainerPageCucumber {
 	//TODO: Get "id" of Email textbox error message of "Please fill out this field"
 	@Then("^an error message should appear below the Email textbox saying Please fill out this field\\.$")
 	public void an_error_message_should_appear_below_the_Email_textbox_saying_Please_fill_out_this_field() throws Throwable {
-		Assert.assertNotEquals(trainer.getEmailErrorMessage().getSize(), 0);		//Error message is visible
+		Assert.assertNotEquals(trainer.getEmailErrorMessage().getSize(), new Dimension(0, 0));		//Error message is visible
 		Assert.assertEquals(trainer.getEmailErrorMessage().getText(), "Please fill out this field.");
 	    
 	    driver.quit();
@@ -249,8 +234,10 @@ public class TrainerPageCucumber {
 
 	@When("^the Email field does not have an @$")
 	public void the_Email_field_does_not_have_at() throws Throwable {
-		//Validate
-		String email = trainer.getEmailTextBox().getText();
+		trainer.getEmailTextBox().sendKeys("Iamnotanemail");
+		
+		/*//Validate
+		String email = trainer.getEmailTextBox().getAttribute("value");
 		try {
 			boolean emailValid = false;
 			String errorStr = "";
@@ -266,13 +253,14 @@ public class TrainerPageCucumber {
 			}
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
-		}
+			driver.quit();
+		}*/
 	}
 
 	//TODO: Get "id" of Email textbox error message of "Please fill out this field"
 	@Then("^an error message should appear below the Email textbox saying Please enter an email address\\.$")
 	public void an_error_message_should_appear_below_the_Email_textbox_saying_Please_enter_an_email_address() throws Throwable {
-		Assert.assertNotEquals(trainer.getEmailErrorMessage().getSize(), 0);		//Error message is visible
+		Assert.assertNotEquals(trainer.getEmailErrorMessage().getSize(), new Dimension(0, 0));		//Error message is visible
 		Assert.assertEquals(trainer.getEmailErrorMessage().getText(), "Please enter an email address.");
 	    
 	    driver.quit();
@@ -280,6 +268,7 @@ public class TrainerPageCucumber {
 	
 	@When("^the Email field does not have any text to the left or the right of the @$")
 	public void the_Email_field_does_not_have_any_text_to_the_left_or_the_right_of_the_At() throws Throwable {
+		trainer.getEmailTextBox().sendKeys(" @ ");
 	    String email = trainer.getEmailTextBox().getText().trim();
 	    String[] subs = email.split("@");
 	    for(String s: subs) {
@@ -298,7 +287,7 @@ public class TrainerPageCucumber {
 	//TODO: Get "id" of Title textbox error message of "Please fill out this field"
 	@Then("^an error message should appear below the Enter Title textbox saying Please fill out this field\\.$")
 	public void an_error_message_should_appear_below_the_Enter_Title_textbox_saying_Please_fill_out_this_field() throws Throwable {
-		Assert.assertNotEquals(trainer.getTitleErrorMessage().getSize(), 0);		//Error message is visible
+		Assert.assertNotEquals(trainer.getTitleErrorMessage().getSize(), new Dimension(0, 0));		//Error message is visible
 		Assert.assertEquals(trainer.getTitleErrorMessage().getText(), "Please fill out this field.");
 	    
 	    driver.quit();
@@ -311,7 +300,8 @@ public class TrainerPageCucumber {
 
 	@Then("^the Add Trainer menu should close without any errors\\.$")
 	public void the_Add_Trainer_menu_should_close_without_any_errors() throws Throwable {
-		Assert.assertEquals(trainer.getAddTrainerMenu().getSize(), 0);			//Add Trainer menu is not visible
+		trainer.waitForAddTrainerMenuClosed();
+		Assert.assertEquals(trainer.getAddTrainerMenu().getSize(), new Dimension(0, 0));			//Add Trainer menu is not visible
 	}
 
 	@When("^I click on the gray x on the top right$")
