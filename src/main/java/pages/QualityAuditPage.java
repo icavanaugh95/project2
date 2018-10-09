@@ -46,6 +46,7 @@ public class QualityAuditPage {
 
 	public List<WebElement> getTrainersFromDropdown() {
 		waitForDiv();
+		String linkText = "";
 		String[] trainers = driver
 				.findElement(By.cssSelector("body > div > ui-view > ui-view > div.container.ng-scope > "
 						+ "div:nth-child(1) > div > div.col-md-12.col-lg-12.top10 > ul:nth-child(1) > li.dropdown.ng-scope.open > ul"))
@@ -53,8 +54,10 @@ public class QualityAuditPage {
 		List<WebElement> trainerElements = new ArrayList<WebElement>();
 		// all the links are sort of ugly in the page so need partialLinkText
 		for (int i = 1; i < trainers.length; i++) {
-			trainerElements.add(driver
-					.findElement(By.partialLinkText(trainers[i].substring(1, trainers[i].indexOf('-', 0)).trim())));
+			linkText = trainers[i].substring(1, trainers[i].indexOf('-', 0)).trim();
+			linkText += trainers[i].substring((trainers[i].indexOf('-', 0) - 1), trainers[i].indexOf('<',0));
+			linkText = linkText.trim();
+			trainerElements.add(driver.findElement(By.linkText(linkText)));
 		}
 
 		return trainerElements;
@@ -81,6 +84,12 @@ public class QualityAuditPage {
 		wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#confirmingweeks > div > div > div.modal-footer")));
 		return driver.findElement(By.cssSelector("#yesBtn"));
+	}
+	
+	public WebElement getNoAddWeekButton() {
+		wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("#confirmingweeks > div > div > div.modal-footer > button.btn.btn-default")));
+		return driver.findElement(By.cssSelector("#confirmingweeks > div > div > div.modal-footer > button.btn.btn-default"));
 	}
 	
 	public WebElement getAddWeekButton() {

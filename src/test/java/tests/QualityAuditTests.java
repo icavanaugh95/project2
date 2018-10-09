@@ -134,7 +134,7 @@ public class QualityAuditTests {
 	 * Adds week to trainer
 	 * compares with previous week #
 	 */
-	@Test
+	@Test(priority = 1)
 	public void addWeek() {
 		List<WebElement> list;
 		int oldlength = 0, newlength = 0;
@@ -204,6 +204,73 @@ public class QualityAuditTests {
 		result = qc.getOverallFrown().getAttribute("innerHTML")
 				.split("fa fa-frown-o fa-2x ")[1].substring(0, 4);
 		Assert.assertTrue(result.equals("pick"));
+	}
+	
+	
+	/*
+	 * Clicks all weeks on a given trainer
+	 * Since there are LOTS of trainers it only
+	 * clicks through the weeks of just one
+	 */
+	@Test
+	public void clickAllWeeks() {		
+		int length, i;
+		List<WebElement> weeks;
+		qc.getDropdownTrainer().click();
+		qc.getTrainersFromDropdown().get(1).click();
+		
+		weeks = qc.getWeeks();
+		length = weeks.size();
+		
+		for(i = 0; i < weeks.size(); i ++) {
+			weeks.get(i).click();			
+		}
+		
+		Assert.assertTrue(length == i);	
+	}
+
+	/*
+	 * Clicks all trainers in the dropdown box
+	 */
+	@Test
+	public void clickAllTrainers() {
+		List<WebElement> trainers;
+		int length, i;
+		qc.getDropdownTrainer().click();
+		
+		trainers = qc.getTrainersFromDropdown();
+		length = trainers.size();
+		for(i = 0; i < trainers.size(); i ++) {
+			trainers.get(i).click();
+			qc.waitForDiv();
+			qc.getDropdownTrainer().click();
+		}
+		
+		Assert.assertTrue(length == i);
+	}
+	
+	/*
+	 * Tests the no button when you add a week
+	 */
+	@Test
+	public void noAddWeek() {
+		List<WebElement> list;
+		int oldlength = 0, newlength = 0;
+		qc.getDropdownTrainer().click();
+		qc.getTrainersFromDropdown().get(1).click();
+		qc.waitForDiv();
+		
+		list = qc.getWeeks();
+		oldlength = list.size();
+		
+		qc.getAddWeekButton().click();
+		qc.getNoAddWeekButton().click();
+		qc.waitForDiv();
+	
+		list = qc.getWeeks();
+		newlength = list.size();
+				
+		Assert.assertTrue(oldlength == newlength);
 	}
 	
 	@AfterSuite
