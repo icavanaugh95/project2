@@ -1,10 +1,20 @@
 describe("Category Suite", () => {
-    // make sure logged in
-    it("Should be logged in", () => {
-        browser.wait(protractor.ExpectedConditions.elementToBeClickable(element(
-            by.css("body > div > ui-view > nav > div > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a"))), 10000);
-        expect(browser.getCurrentUrl()).toEqual("https://dev-caliber.revature.tech/caliber/#/vp/home");
-    });
+
+    // returns callback with number of
+    // the total categories in all tables
+    function countCategories(callback){
+        let amount = 0;
+        element.all(by.tagName("tbody")).then((table) => {
+        for(let i = 0; i < table.length; i++){ // for each table
+                table[i].all(by.tagName("tr")).then((rows) => {
+                    amount += rows.length; // add length
+                })
+            }
+        }).then(() => {
+            callback(amount);
+        });
+    };
+
 
     it("Should go to the categories page", () => {
         element(by.css("li[role='presentation']")).click();
@@ -13,15 +23,65 @@ describe("Category Suite", () => {
     });
 
     it("Should add a category", () => {
-        element(by.css("body > div > ui-view > ui-view > div:nth-child(1) > div > div > div > ul > li > a")).click();
-        // wait for text box to be clicked
-        browser.wait(protractor.ExpectedConditions.elementToBeClickable(element(by.id("categoryName"))), 5000);
-        element(by.id("categoryName")).sendKeys("Node.js");
-        // submit
-        element(by.css("#addCategoryModal > div > div > div.modal-body > div > div.modal-footer > input")).click();
+        browser.wait(protractor.ExpectedConditions.elementToBeClickable(
+            element(by.css("body > div > ui-view > ui-view > div:nth-child(1) > div > div > div > ul > li > a"))
+        ), 5000);
+        countCategories((oldAmount) => {
+            element(by.css("body > div > ui-view > ui-view > div:nth-child(1) > div > div > div > ul > li > a")).click();
+            // wait for text box to be clicked
+            browser.wait(protractor.ExpectedConditions.elementToBeClickable(element(by.id("categoryName"))), 5000);
+            element(by.id("categoryName")).sendKeys("A New Category");
+            // submit
+            element(by.css("#addCategoryModal > div > div > div.modal-body > div > div.modal-footer > input")).click();
+            browser.wait(protractor.ExpectedConditions.elementToBeClickable(
+                element(by.css("body > div > ui-view > ui-view > div:nth-child(1) > div > div > div > ul > li > a"))
+            ), 5000);
+            countCategories((newAmount) => {
+                expect(newAmount).toEqual(oldAmount + 1); // check if amount of categories updated
+            });                                          
+        });
+    });
+
+    it("Should add an empty category", () => {
+        browser.wait(protractor.ExpectedConditions.elementToBeClickable(
+            element(by.css("body > div > ui-view > ui-view > div:nth-child(1) > div > div > div > ul > li > a"))
+        ), 5000);
+        countCategories((oldnum) => {
+            element(by.css("body > div > ui-view > ui-view > div:nth-child(1) > div > div > div > ul > li > a")).click();
+            // wait for text box to be clicked
+            browser.wait(protractor.ExpectedConditions.elementToBeClickable(element(by.id("categoryName"))), 5000);
+            element(by.id("categoryName")).sendKeys("");
+            // submit
+            element(by.css("#addCategoryModal > div > div > div.modal-body > div > div.modal-footer > input")).click();
+            browser.wait(protractor.ExpectedConditions.elementToBeClickable(
+                element(by.css("body > div > ui-view > ui-view > div:nth-child(1) > div > div > div > ul > li > a"))
+            ), 5000);
+            countCategories((newnum) => {
+                expect(newnum).toEqual(oldnum + 1); // check if amount of categories updated
+            });                                          
+        });
+    });
+
+    it("Should click create a category and cancel", () => {
+        countCategories((oldAmount) => {
+            element(by.css("body > div > ui-view > ui-view > div:nth-child(1) > div > div > div > ul > li > a")).click();
+            // wait for text box to be clicked
+            browser.wait(protractor.ExpectedConditions.elementToBeClickable(element(by.id("categoryName"))), 5000);
+
+            // click cancel
+            element(by.css("#addCategoryModal > div > div > div.modal-body > div > div.modal-footer > button")).click();
+
+            // check if categories didn't change
+            countCategories((newAmount) => {
+                expect(newAmount).toEqual(oldAmount);
+            });
+        });
     });
 
     it("Should rename the first category in the first table", () => {
+        // wait for table
+        browser.wait(protractor.ExpectedConditions.elementToBeClickable(element(by.css("#trainer-assess-table"))), 5000);
+        
         element.all(by.tagName("tbody")).then((table) => {
             table[0].all(by.tagName("tr")).then((links) => {
                 browser.wait(protractor.ExpectedConditions.elementToBeClickable(links[0]));
@@ -52,7 +112,7 @@ describe("Category Suite", () => {
                 table[j].all(by.tagName("tr")).then((links) => { // for every row
                     for (let i = 0; i < links.length; i++) {
                         // wait for div
-                        browser.wait(protractor.ExpectedConditions.elementToBeClickable(element(by.css("#trainer-assess-table > div > div:nth-child(1)")), 5000))
+                        browser.wait(protractor.ExpectedConditions.elementToBeClickable(element(by.css("#trainer-assess-table > div > div:nth-child(1)"))), 5000);
                         // wait for link to be clickable
                         browser.wait(protractor.ExpectedConditions.elementToBeClickable(links[i]));
                         links[i].click();
@@ -66,4 +126,3 @@ describe("Category Suite", () => {
         });
     }); // end it
 });
-
