@@ -54,7 +54,7 @@ public class MainPage {
 	
 	public WebElement getPanelLink() {
 		waitForNavBar();
-		return driver.findElement(By.cssSelector("a[ui-sref='vp.audit']"));
+		return driver.findElement(By.cssSelector("a[ui-sref='vp.panel']"));
 	}
 	
 	public WebElement getReportsLink() {
