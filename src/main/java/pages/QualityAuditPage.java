@@ -93,23 +93,6 @@ public class QualityAuditPage {
 		return driver.findElements(By.tagName("textarea"));
 	}
 	
-	/* This lets you type in every text box
-	 *		List<WebElement> list = qc.getTextBoxes();
-		WebDriverWait wait = new WebDriverWait(driver, 20);
-
-		qc.waitForDiv();
-		list.get(list.size() - 1).clear();
-		list.get(list.size() - 1).sendKeys("3");
-		
-		for (int i = 0; i < list.size(); i++) {
-			wait.until(ExpectedConditions.elementToBeClickable(list.get(i)));
-			list.get(i).clear();
-			wait.until(ExpectedConditions.elementToBeClickable(list.get(i)));
-			list.get(i).sendKeys("3");;
-			wait.until(ExpectedConditions.elementToBeClickable(list.get(i)));
-		}
-	 */
-	
 	public void waitForDiv() {
 		wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions
