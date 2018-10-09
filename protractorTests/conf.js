@@ -1,4 +1,4 @@
 exports.config = {
     seleniumAddress : "http://localhost:4444/wd/hub",
-    specs: ['locationsPageTest.js']
+    specs: ['login.js','locationsPageTests.js', 'categoryPageTests.js']
 };
