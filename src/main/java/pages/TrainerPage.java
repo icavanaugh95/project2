@@ -25,7 +25,7 @@ public class TrainerPage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("trainerModalLabel")));
 	}
 	
-	private void waitForAddTrainerMenuClosed() {
+	public void waitForAddTrainerMenuClosed() {
 		wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("trainerModalLabel")));
 	}
@@ -66,6 +66,7 @@ public class TrainerPage {
 	public WebElement getTitleTextBox() {
 		waitForAddTrainerMenuOpen();
 		return driver.findElement(By.id("Title"));
+		//return driver.findElement(By.id("trainerTitle"));
 	}
 	
 	public WebElement getTierDropdown() {
@@ -75,8 +76,7 @@ public class TrainerPage {
 	
 	public WebElement getSaveButton() {
 		waitForAddTrainerMenuOpen();
-		//return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > input:nth-child(1)"));
-		return driver.findElement(By.linkText("Save"));
+		return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > input:nth-child(1)"));
 	}
 	
 	//Only works if there is one table (i.e. one <tbody>) on the page
@@ -103,12 +103,11 @@ public class TrainerPage {
 	
 	public WebElement getCloseButton() {
 		waitForAddTrainerMenuOpen();
-		//return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > input:nth-child(1)"))
-		return driver.findElement(By.linkText("Close"));
+		return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > button:nth-child(2)"));
 	}
 	
 	public WebElement getGrayX() {
-		//return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(1)"))
-		return driver.findElement(By.linkText("x"));
+		waitForAddTrainerMenuOpen();
+		return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(1)"));
 	}
 }
