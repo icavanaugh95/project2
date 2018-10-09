@@ -79,15 +79,15 @@ public class QualityAuditPage {
 
 	public WebElement getYesAddWeekButton() {
 		wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("#confirmingweeks > div > div > div.modal-footer")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#confirmingweeks > div > div > div.modal-footer")));
 		return driver.findElement(By.cssSelector("#yesBtn"));
 	}
 	
 	public WebElement getAddWeekButton() {
 		waitForDiv();
-		return driver.findElement(By.cssSelector("body > div > ui-view > ui-view > div.container.ng-scope > "
-				+ "div:nth-child(1) > div > div.col-sm-12.col-md-12.col-lg-12.top5.ng-scope > ul > li:nth-child(18) > a"));
+		return driver.findElement(By.cssSelector("span[class='glyphicon glyphicon-plus']"));
 	}
+	
 	
 	public List<WebElement> getTextBoxes(){
 		return driver.findElements(By.tagName("textarea"));
@@ -97,5 +97,20 @@ public class QualityAuditPage {
 		wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.cssSelector("body > div > ui-view > ui-view > div.container.ng-scope")));
+	}
+	
+	public WebElement getOverallSmiley() {
+		return driver.findElement(By.cssSelector("body > div > ui-view > ui-view > div.container.ng-scope > div.container.ng-scope "
+				+ "> div.row.centered > button:nth-child(2)"));
+	}
+	
+	public WebElement getOverallMeh() {
+		return driver.findElement(By.cssSelector("body > div > ui-view > ui-view > div.container.ng-scope > div.container.ng-scope "
+				+ "> div.row.centered > button:nth-child(3)"));
+	}
+	
+	public WebElement getOverallFrown() {
+		return driver.findElement(By.cssSelector("body > div > ui-view > ui-view > div.container.ng-scope > div.container.ng-scope "
+				+ "> div.row.centered > button:nth-child(4)"));
 	}
 }
