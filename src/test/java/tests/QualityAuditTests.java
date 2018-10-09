@@ -130,9 +130,80 @@ public class QualityAuditTests {
 				.getAttribute("value")));
 	}
 
+	/*
+	 * Adds week to trainer
+	 * compares with previous week #
+	 */
 	@Test
 	public void addWeek() {
+		List<WebElement> list;
+		int oldlength = 0, newlength = 0;
+		qc.getDropdownTrainer().click();
+		qc.getTrainersFromDropdown().get(1).click();
+		qc.waitForDiv();
 		
+		list = qc.getWeeks();
+		oldlength = list.size();
+		
+		qc.getAddWeekButton().click();
+		qc.getYesAddWeekButton().click();
+		qc.waitForDiv();
+	
+		list = qc.getWeeks();
+		newlength = list.size();
+				
+		Assert.assertTrue(oldlength < newlength);
+	}
+	
+	/*
+	 * Clicks the green face for the overall batch given week
+	 * compares with an attribute of the element inside 
+	 */
+	@Test
+	public void clickBatchSmiley() {
+		String result = "";
+		qc.waitForDiv();
+		qc.getDropdownTrainer().click();
+		qc.getTrainersFromDropdown().get(1).click();
+		qc.waitForDiv();
+		qc.getOverallSmiley().click();
+		result = qc.getOverallSmiley().getAttribute("innerHTML")
+				.split("fa fa-smile-o fa-2x ")[1].substring(0, 4);
+		Assert.assertTrue(result.equals("pick"));
+	}
+	
+	/*
+	 * Clicks the yellow face for the overall batch given week
+	 * compares with an attribute of the element inside 
+	 */
+	@Test
+	public void clickBatchMeh() {
+		String result = "";
+		qc.waitForDiv();
+		qc.getDropdownTrainer().click();
+		qc.getTrainersFromDropdown().get(1).click();
+		qc.waitForDiv();
+		qc.getOverallMeh().click();
+		result = qc.getOverallMeh().getAttribute("innerHTML")
+				.split("fa fa-meh-o fa-2x ")[1].substring(0, 4);
+		Assert.assertTrue(result.equals("pick"));
+	}
+	
+	/*
+	 * Clicks the red face for the overall batch given week
+	 * compares with an attribute of the element inside 
+	 */
+	@Test
+	public void clickBatchFrown() {
+		String result = "";
+		qc.waitForDiv();
+		qc.getDropdownTrainer().click();
+		qc.getTrainersFromDropdown().get(1).click();
+		qc.waitForDiv();
+		qc.getOverallFrown().click();
+		result = qc.getOverallFrown().getAttribute("innerHTML")
+				.split("fa fa-frown-o fa-2x ")[1].substring(0, 4);
+		Assert.assertTrue(result.equals("pick"));
 	}
 	
 	@AfterSuite
