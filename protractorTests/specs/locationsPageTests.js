@@ -25,7 +25,7 @@ describe("Should be on Home page", () => {
         browser.wait(EC.visibilityOf(el), 5000);
 
         
-        expect(element(by.css('#createLocationModal > div > div')).isDisplayed()).toBe(true);
+        expect(el.isDisplayed()).toBe(true);
 
     })
 
@@ -37,21 +37,111 @@ describe("Should be on Home page", () => {
         let el = element(by.css('#createLocationModal > div > div'));
         browser.wait(EC.invisibilityOf(el), 5000);
        
-        expect(element(by.css('#createLocationModal > div > div')).isDisplayed()).toBe(false);
+        expect(el.isDisplayed()).toBe(false);
        
     })
 
     it("Add edit location should appear if a pencil icon is clicked", () => {
         
-         tableBody = element(by.className("table table-hover"));
+         pencil = element(by.className("table table-hover")).all(by.tagName('a')).get(0);
+         pencil.click();
 
-
-         pencils = tableBody.all(by.tagName('a'));
-         pencils.get(0).click();
+         let EC = protractor.ExpectedConditions;
+         let el = element(by.css('#editLocationModal > div > div'));
+         browser.wait(EC.visibilityOf(el), 5000);
          
-         browser.sleep(5000);
+         expect(el.isDisplayed()).toBe(true);
+         
 
     })
+
+    it("Add edit location should close if the x is clicked", () => {
+        
+        element(by.css("#editLocationModal > div > div > div.modal-header > button > span")).click();
+
+        let EC = protractor.ExpectedConditions;
+        let el = element(by.css('#editLocationModal > div > div'));
+        browser.wait(EC.invisibilityOf(el), 5000);
+        
+        expect(el.isDisplayed()).toBe(false);
+        
+
+   })
+
+   it("Activate/Deactivate popup appears when clicking the Check/X", () => {
+        
+    status = element(by.className("table table-hover")).all(by.tagName('a')).get(1);
+    status.click();
+
+    let EC = protractor.ExpectedConditions;
+    let el = element(by.css('#addLocationModal > div > div > div.modal-body'));
+    browser.wait(EC.visibilityOf(el), 5000);
+    
+    expect(el.isDisplayed()).toBe(true);
+    
+
+    })
+
+    it("Activate/Deactivate popup should close if the x is clicked", () => {
+            
+        element(by.css("#addLocationModal > div > div > div.modal-header > button > span")).click();
+
+        let EC = protractor.ExpectedConditions;
+        let el = element(by.css('#addLocationModal > div > div > div.modal-body'));
+        browser.wait(EC.invisibilityOf(el), 5000);
+        
+        expect(el.isDisplayed()).toBe(false);
+        
+
+    })
+
+    it("Activate/Deactivate popup should close if close is clicked", () => {
+
+        status = element(by.className("table table-hover")).all(by.tagName('a')).get(1);
+        status.click();
+
+        let EC = protractor.ExpectedConditions;
+        let el = element(by.css('#addLocationModal > div > div > div.modal-body'));
+        browser.wait(EC.visibilityOf(el), 5000);
+            
+        element(by.css("#addLocationModal > div > div > div.modal-footer > button")).click();
+
+        let EC2 = protractor.ExpectedConditions;
+        let el2 = element(by.css('#addLocationModal > div > div > div.modal-body'));
+        browser.wait(EC2.invisibilityOf(el2), 5000);
+        
+        expect(el2.isDisplayed()).toBe(false);
+        
+
+    })
+
+
+    // This works but the website has no way to delete locations so dont use for now
+    // it("If I insert all required data to the Add location menu it should insert a new item into table", () => {
+
+    //     element(by.css("body > div > ui-view > ui-view > div > div:nth-child(1) > div > div > ul > li > a")).click();
+
+    //     let EC = protractor.ExpectedConditions;
+    //     let el = element(by.css('#createLocationModal > div > div'));
+    //     browser.wait(EC.visibilityOf(el), 5000);
+
+    //     element(by.model("locationForm.company")).sendKeys("CDTest");
+    //     element(by.model("locationForm.street")).sendKeys("CDTest Street");
+    //     element(by.model("locationForm.city")).sendKeys("CDTest City");
+    //     element(by.model("locationForm.state")).all(by.tagName("option")).get(36).click();
+    //     element(by.model("locationForm.zipcode")).sendKeys("CDTest 123");
+
+    //     element(by.css("#createLocationModal > div > div > div.modal-body > div.modal-footer > input")).click();
+
+    //     browser.wait(EC.invisibilityOf(el), 5000);
+
+    //     expect(element(by.cssContainingText('td', 'CDTest')).isPresent()).toBe(true);
+            
+        
+
+    // })
+
+
 
 
 });
@@ -60,124 +150,12 @@ describe("Should be on Home page", () => {
 
 
 
-// Given I am logged in to the Caliber website
-//    And I am in the �Add Location� menu
-// When I properly fill in Company Name, Street Address, City, State, and Zipcode
-//    And I click �Save�
-// Then a new Location should appear on the list of Locations with the proper fields I filled in.
-
-// Given I am logged in to the Caliber website
-//    And I am in the �Add Location� menu
-// When the �Company Name� field is left blank
-//    And I click �Save�
-// Then an error message should appear below the �Enter Company Name� textbox saying �Please fill out this field.�
-
-// Given I am logged in to the Caliber website
-//    And I am in the �Add Location� menu
-// When the �Street Address� field is left blank
-//    And I click �Save�
-// Then an error message should appear below the �Enter Street Address� textbox saying �Please fill out this field.�
-
-// Given I am logged in to the Caliber website
-//    And I am in the �Add Location� menu
-// When the �City� field is left blank
-//    And I click �Save�
-// Then an error message should appear below the �Enter City� textbox saying �Please fill out this field.�
-
-// Given I am logged in to the Caliber website
-//    And I am in the �Add Location� menu
-// When the �State� field is left blank
-//    And I click �Save�
-// Then an error message should appear below the �Select State� dropdown saying �Please fill out this field.�
-
-// Given I am logged in to the Caliber website
-//    And I am in the �Add Location� menu
-// When the �Zipcode� field is left blank
-//    And I click �Save�
-// Then an error message should appear below the �Enter Zipcode� textbox saying �Please fill out this field.�
-
-// Given I am logged in to the Caliber website
-//    And I am in the �Add Location� menu
-// When the �Zipcode� field is filled in
-//    But the input is not numeric
-//    And I click �Save�
-// Then an error message should appear below the �Enter Zipcode� textbox saying �Zipcode should be numbers only.�
-
-// Given I am logged in to the Caliber website
-//    And I am in the �Add Location� menu
-// When the �Zipcode� field is filled in
-//    And the input is numeric
-//    But the input is not 5 or 9 digits long
-//    And I click �Save�
-// Then an error message should appear below the �Enter Zipcode� textbox saying �Zipcode must be 5 or 9 digits only.�
-
-// //Edit Location
-// Given I am logged in to the Caliber website
-//    And I am on the Locations Page
-// When I click on any pencil icon
-// Then the �Edit Location� menu should appear.
 
 // Given I am logged in to the Caliber website
 //    And I am in the �Edit Location� menu
 // When I properly fill in Company Name, Street Address, City, State, and Zipcode
 //    And I click �Save�
 // Then a new Location should appear on the list of Locations with the proper fields I filled in.
-
-// Given I am logged in to the Caliber website
-//    And I am in the �Edit Location� menu
-// When the �Company Name� field is left blank
-//    And I click �Save�
-// Then an error message should appear below the �Enter Company Name� textbox saying �Please fill out this field.�
-
-// Given I am logged in to the Caliber website
-//    And I am in the �Edit Location� menu
-// When the �Street Address� field is left blank
-//    And I click �Save�
-// Then an error message should appear below the �Enter Street Address� textbox saying �Please fill out this field.�
-
-// Given I am logged in to the Caliber website
-//    And I am in the �Edit Location� menu
-// When the �City� field is left blank
-//    And I click �Save�
-// Then an error message should appear below the �Enter City� textbox saying �Please fill out this field.�
-
-// Given I am logged in to the Caliber website
-//    And I am in the �Edit Location� menu
-// When the �State� field is left blank
-//    And I click �Save�
-// Then an error message should appear below the �Select State� dropdown saying �Please fill out this field.�
-
-// Given I am logged in to the Caliber website
-//    And I am in the �Edit Location� menu
-// When the �Zipcode� field is left blank
-//    And I click �Save�
-// Then an error message should appear below the �Enter Zipcode� textbox saying �Please fill out this field.�
-
-// Given I am logged in to the Caliber website
-//    And I am in the �Edit Location� menu
-// When the �Zipcode� field is filled in
-//    But the input is not numeric
-//    And I click �Save�
-// Then an error message should appear below the �Enter Zipcode� textbox saying �Zipcode should be numbers only.�
-
-// Given I am logged in to the Caliber website
-//    And I am in the �Edit Location� menu
-// When the �Zipcode� field is filled in
-//    And the input is numeric
-//    But the input is not 5 or 9 digits long
-//    And I click �Save�
-// Then an error message should appear below the �Enter Zipcode� textbox saying �Zipcode must be 5 or 9 digits only.�
-
-// //Reactivate Location
-// Given I am logged in to the Caliber website
-// When I click on any green check mark
-// Then the �Reactivate Location� menu should appear.
-
-// Given I am logged in to the Caliber website
-//    When I click on "Settings" 
-//    And I click on the Locations tab
-//    And I click on the red x icon next to <name>
-// Then the message on the �Remove Location� page should say �Are you sure you want to re-activate <name>?�
 
 // Given I am logged in to the Caliber website
 //    And I am on the �Reactivate Location� menu
@@ -193,29 +171,3 @@ describe("Should be on Home page", () => {
 //    And the previously deactivated location�s record should now have a green check mark to the left of it.
 //    And the rightmost icon should now be a red x.
 
-// //Remove Location
-// Given I am logged in to the Caliber website
-// When I click on "Settings" 
-//    And I click on the Locations tab
-//    And I click on any rightmost red x icon
-// Then the �Remove Location� warning page should appear.
-
-// Given I am logged in to the Caliber website
-//    When I click on "Settings" 
-//    And I click on the Locations tab
-//    And I click on the rightmost red x icon of <name>�s record
-// Then the message on the �Remove Location� page should say �Are you sure you want to delete <name>?�
-
-// Given I am logged in to the Caliber website
-//    And I am on the �Remove Location� menu
-// When I click �Cancel�
-// Then the �Remove Location� menu should close without any errors.
-//    And the deactivated location�s record should still have a green check mark to the left of it.
-//    And the rightmost icon should still be a red x.
-
-// Given I am logged in to the Caliber website
-//    And I am on the �Remove Location� menu
-// When I click �Reactivate�
-// Then the �Remove Location� menu should close without any errors.
-//    And the previously deactivated location�s record should now have a red x to the left of it.
-//    And the rightmost icon should now be a green check mark.
