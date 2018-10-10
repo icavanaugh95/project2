@@ -60,7 +60,7 @@ export class AppComponent {
       this.protractorResults = resp.text;
     }, (err) => {
       console.log(err);
-      this.protractorResults = err.text;
+      this.protractorResults = err.error.text;
     });
   }
 }
