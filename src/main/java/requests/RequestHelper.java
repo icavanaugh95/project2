@@ -43,10 +43,10 @@ public class RequestHelper {
 //			Process pr = run.exec("cmd /c dir");
 		
 			try {
-				response.getWriter().println("Before something");
 				pr.waitFor();
 			} catch (InterruptedException e) {
 				// something went wrong
+				response.getWriter().println(e.getMessage());
 				BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
 				while((line = buf.readLine()) != null) {
 					
@@ -57,6 +57,7 @@ public class RequestHelper {
 			
 			BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
 			if(buf.readLine() != null) {
+				response.getWriter().println("Buf if");
 				while((line = buf.readLine()) != null) {
 					System.out.println(line);
 					response.getWriter().println(line);
