@@ -20,6 +20,6 @@ export class RequestsService {
   }
 
   runProtractorTests():Observable<any>{
-    return this.http.get("http://54.174.104.191:8080/Project2/Servlet/ProtractorTests");
+    return this.http.get("http://ron-swanson-quotes.herokuapp.com/v2/quotes");
   }
 }
