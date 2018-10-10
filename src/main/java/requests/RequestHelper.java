@@ -39,7 +39,7 @@ public class RequestHelper {
 			// execute command from command line
 			String line = "Nothing";
 			Runtime run = Runtime.getRuntime();
-			Process pr = run.exec("cmd /c cd C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests & dir");
+			Process pr = run.exec("cmd /c call C:\\Users\\Administrator\\Desktop\\protractor");
 //			Process pr = run.exec("cmd /c dir");
 		
 			try {
@@ -64,8 +64,8 @@ public class RequestHelper {
 					response.getWriter().println(line);
 				}
 			}
-			
-			if(line.equals("")) {
+		
+			if(line.equals("Nothing")) {
 				System.out.println("Something bad happened");
 				response.getWriter().println("Something bad happened :(");
 			}
