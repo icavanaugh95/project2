@@ -57,9 +57,10 @@ export class AppComponent {
   getProtractorResults(){
     this.protractor.subscribe((resp) => {
       console.log(resp);
-      this.protractorResults = "I succeeded!";
+      this.protractorResults = resp.text;
     }, (err) => {
-      this.protractorResults = err;
+      console.log(err);
+      this.protractorResults = err.text;
     });
   }
 }
