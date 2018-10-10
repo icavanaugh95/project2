@@ -37,12 +37,10 @@ public class RequestHelper {
 		}
 		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {
 			// execute command from command line
-			File f = new File("protractor.bat");
-			String cmd = "protractor.bat";
+			String cmd = "cmd /c start C:/Users/Administrator/Desktop/protractor";
 			String line = "";
 			Runtime run = Runtime.getRuntime();
-			Process pr = run.exec(cmd, null, f);
-//			Process pr = run.exec(f);
+			Process pr = run.exec(cmd);
 			
 			try {
 				pr.waitFor();
