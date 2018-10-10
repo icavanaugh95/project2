@@ -37,6 +37,7 @@ public class RequestHelper {
 		}
 		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {
 			// execute command from command line
+			String line;
 			Runtime run = Runtime.getRuntime();
 			Process pr = run.exec("cmd /c cd C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests & protractor conf.js");
 //			Process pr = run.exec("cmd /c dir");
@@ -45,20 +46,23 @@ public class RequestHelper {
 				pr.waitFor();
 			} catch (InterruptedException e) {
 				// something went wrong
-				String line = "";
+				line = "";
 				BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
 				while((line = buf.readLine()) != null) {
 					response.getWriter().println(line);
 				}
 				e.printStackTrace();
 			}
-			String line = "";
+			line = "";
 			BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
 			while((line = buf.readLine()) != null) {
 				System.out.println(line);
-				response.getWriter().append(line);
+				response.getWriter().println(line);
 			}
 			
+			if(line.equals("")) {
+				response.getWriter().println("Something bad happened :(");
+			}
 			
 		}
 	}
