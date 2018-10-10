@@ -37,7 +37,12 @@ export class AppComponent {
   getQualityAuditTestResults(){
     this.qualityAudit.subscribe((resp) => {
       // what to do if success
-      this.qualityAuditResults = resp;
+      // this.qualityAuditResults = resp;
+
+      this.qualityAuditResults = "Looks like it work :) ";
+      this.qualityAuditResults += "Add code to disable button so it doesn't run tests multiple times. ";
+      this.qualityAuditResults += "Gotta return some results."
+      
 
     }, // end succes function
       (err) => {
