@@ -43,11 +43,11 @@ public class RequestHelper {
 //			Process pr = run.exec("cmd /c dir");
 		
 			try {
+				response.getWriter().println("Before something");
 				pr.waitFor();
 			} catch (InterruptedException e) {
 				// something went wrong
 				BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
-				System.out.println("Bad");
 				while((line = buf.readLine()) != null) {
 					
 					response.getWriter().println(line);
@@ -57,7 +57,6 @@ public class RequestHelper {
 			
 			BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
 			if(buf.readLine() != null) {
-				System.out.println("Bad");
 				while((line = buf.readLine()) != null) {
 					System.out.println(line);
 					response.getWriter().println(line);
@@ -69,6 +68,7 @@ public class RequestHelper {
 				response.getWriter().println("Something bad happened :(");
 			}
 			
+			response.getWriter().println("End line");
 		}
 	}
 }
