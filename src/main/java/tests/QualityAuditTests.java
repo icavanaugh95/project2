@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -31,9 +32,9 @@ public class QualityAuditTests {
 
 	@BeforeSuite
 	public void setUpDriverAndPage() throws IOException {
-		File file = new File("src/main/resources/chromedriver.exe");
+		File file = new File("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\main\\resources\\chromedriver.exe");
 		Properties props = new Properties();
-		FileInputStream in = new FileInputStream("src/main/resources/login.properties");
+		FileInputStream in = new FileInputStream("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\main\\resources\\login.properties");
 		String url, username, password;
 
 		System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
@@ -50,12 +51,15 @@ public class QualityAuditTests {
 		login.getUsername().sendKeys(username);
 		login.getPassword().sendKeys(password);
 		login.getLoginButton().click();
-	}
-
-	@BeforeMethod
-	public void goToAuditPage() {
+		login.waitForNavBar();
 		login.getQualityAuditLink().click();
 	}
+
+//	@BeforeMethod
+//	public void goToAuditPage() {
+////		wait.until(ExpectedConditions.elementToBeClickable(
+////				driver.findElement(By.cssSelector("body > div > ui-view > nav > div > ul.nav.navbar-nav.navbar-right > li:nth-child(4) > a"))));
+//	}
 
 	/*
 	 * Checks data for all the years for duplicate data
@@ -86,7 +90,7 @@ public class QualityAuditTests {
 		wait = new WebDriverWait(driver, 10);
 		qc.waitForDiv();
 		qc.getDropdownTrainer().click();
-		qc.getTrainersFromDropdown().get(1).click();
+		qc.getTrainersFromDropdown().get(0).click();
 		List<WebElement> list = qc.getTextBoxes();
 		qc.waitForDiv();
 
@@ -134,12 +138,13 @@ public class QualityAuditTests {
 	 * Adds week to trainer
 	 * compares with previous week #
 	 */
-	@Test(priority = 1)
+	@Test
 	public void addWeek() {
 		List<WebElement> list;
 		int oldlength = 0, newlength = 0;
 		qc.getDropdownTrainer().click();
-		qc.getTrainersFromDropdown().get(1).click();
+		list = qc.getTrainersFromDropdown();
+		list.get(list.size() - 1).click();
 		qc.waitForDiv();
 		
 		list = qc.getWeeks();
@@ -148,10 +153,10 @@ public class QualityAuditTests {
 		qc.getAddWeekButton().click();
 		qc.getYesAddWeekButton().click();
 		qc.waitForDiv();
-	
+		
 		list = qc.getWeeks();
 		newlength = list.size();
-				
+
 		Assert.assertTrue(oldlength < newlength);
 	}
 	
@@ -216,7 +221,9 @@ public class QualityAuditTests {
 	public void clickAllWeeks() {		
 		int length, i;
 		List<WebElement> weeks;
+		qc.waitForDiv();
 		qc.getDropdownTrainer().click();
+		qc.waitForDiv();
 		qc.getTrainersFromDropdown().get(1).click();
 		
 		weeks = qc.getWeeks();
@@ -269,7 +276,9 @@ public class QualityAuditTests {
 	
 		list = qc.getWeeks();
 		newlength = list.size();
-				
+		
+		// wait for div to disappear
+		wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.id("confirmingweeks"))));
 		Assert.assertTrue(oldlength == newlength);
 	}
 	

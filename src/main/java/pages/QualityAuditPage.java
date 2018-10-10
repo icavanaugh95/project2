@@ -48,8 +48,7 @@ public class QualityAuditPage {
 		waitForDiv();
 		String linkText = "";
 		String[] trainers = driver
-				.findElement(By.cssSelector("body > div > ui-view > ui-view > div.container.ng-scope > "
-						+ "div:nth-child(1) > div > div.col-md-12.col-lg-12.top10 > ul:nth-child(1) > li.dropdown.ng-scope.open > ul"))
+				.findElement(By.cssSelector("body > div > ui-view > ui-view > div.container.ng-scope > div:nth-child(1) > div > div.col-md-12.col-lg-12.top10 > ul:nth-child(1) > li.dropdown.ng-scope.open > ul"))
 				.getAttribute("innerHTML").split("class=\"ng-binding\">");
 		List<WebElement> trainerElements = new ArrayList<WebElement>();
 		// all the links are sort of ugly in the page so need partialLinkText
