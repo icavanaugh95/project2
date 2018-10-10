@@ -1,7 +1,9 @@
 package requests;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,24 @@ public class RequestHelper {
 			testng.setVerbose(10);
 			testng.setTestSuites(suites);
 			testng.run();
+			response.sendRedirect("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Quality Audit Page\\Test page.html");
+		}
+		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {
+			// execute command from command line
+			Runtime run = Runtime.getRuntime();
+			Process pr = run.exec("cmd /c cd C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests & protractor conf.js");
+			try {
+				pr.waitFor();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			String line = "";
+			BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+			while((line = buf.readLine()) != null) {
+				response.getWriter().append(line);
+			}
+			
+			
 		}
 	}
 }
