@@ -1,7 +1,9 @@
 package requests;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,19 +23,36 @@ public class RequestHelper {
 		if(uri.equals("/Project2/Servlet/getSomething")) 
 			response.getWriter().append("[{\"name\":\"Adam\",\"Age\":19},{\"name\":\"Brian\",\"Age\":24},{\"name\":\"Jackie\",\"Age\":23}]");
 		else if(uri.equals("/Project2/Servlet/QualityAuditTests")) {
-			System.out.println("Here");
+			System.out.println("Run TestNG Quality Audit Tests......");
 			TestListenerAdapter adapter = new TestListenerAdapter();
 			TestNG testng = new TestNG();
-			List<String> suites = new ArrayList<String>();
-			File f = new File("me.text");
-			System.out.println(f.getAbsolutePath());
-			System.out.println(f.getCanonicalPath());
-			System.out.println(f.getPath());
+			List<String> suites = new ArrayList<String>();;
+			
 			//path to xml
 			suites.add("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\test\\resources\\testngAuditPage.xml"); 
 			testng.setVerbose(10);
 			testng.setTestSuites(suites);
+			testng.setOutputDirectory("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\webapps\\Project2");
 			testng.run();
+			response.getWriter().println("Tests are complete");
+//			response.sendRedirect("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Quality Audit Page\\Test page.html");
+		}
+		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {
+			// execute command from command line
+			String cmd = "cmd /c start C:/Users/Administrator/Desktop/protractor";
+			Runtime run = Runtime.getRuntime();
+			Process pr = run.exec(cmd);
+			
+			try {
+				pr.waitFor();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			
+			response.getWriter().println("End");
+			
+			pr.destroy();
 		}
 	}
 }
