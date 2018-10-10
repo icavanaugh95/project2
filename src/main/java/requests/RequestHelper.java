@@ -1,7 +1,9 @@
 package requests;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,44 @@ public class RequestHelper {
 			testng.setVerbose(10);
 			testng.setTestSuites(suites);
 			testng.run();
+			response.sendRedirect("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Quality Audit Page\\Test page.html");
+		}
+		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {
+			// execute command from command line
+			String line = "Nothing";
+			Runtime run = Runtime.getRuntime();
+			Process pr = run.exec("cmd /c call C:\\Users\\Administrator\\Desktop\\protractor");
+//			Process pr = run.exec("cmd /c dir");
+		
+			try {
+				pr.waitFor();
+				response.getWriter().println("After process.waitFor()");
+			} catch (Exception e) {
+				// something went wrong
+				response.getWriter().println(e.getMessage());
+				BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+				while((line = buf.readLine()) != null) {
+					
+					response.getWriter().println(line);
+				}
+				e.printStackTrace();
+			}
+			
+			BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+			if(buf.readLine() != null) {
+				response.getWriter().println("Buf if");
+				while((line = buf.readLine()) != null) {
+					System.out.println(line);
+					response.getWriter().println(line);
+				}
+			}
+		
+			if(line.equals("Nothing")) {
+				System.out.println("Something bad happened");
+				response.getWriter().println("Something bad happened :(");
+			}
+			
+			response.getWriter().println("End line");
 		}
 	}
 }
