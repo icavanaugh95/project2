@@ -38,7 +38,6 @@ public class RequestHelper {
 		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {
 			// execute command from command line
 			String cmd = "cmd /c start C:/Users/Administrator/Desktop/protractor";
-			String line = "";
 			Runtime run = Runtime.getRuntime();
 			Process pr = run.exec(cmd);
 			
@@ -48,14 +47,10 @@ public class RequestHelper {
 				e.printStackTrace();
 			}
 			
-			BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
-			while((line = buf.readLine()) != null) {
-				System.out.println(line);
-				response.getWriter().println(line);
-			}
-
 			
-			response.getWriter().println("End line");
+			response.getWriter().println("End");
+			
+			pr.destroy();
 		}
 	}
 }
