@@ -48,7 +48,7 @@ public class RequestHelper {
 				String line = "";
 				BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
 				while((line = buf.readLine()) != null) {
-					response.getWriter().append(line);
+					response.getWriter().println(line);
 				}
 				e.printStackTrace();
 			}
