@@ -21,14 +21,11 @@ public class RequestHelper {
 		if(uri.equals("/Project2/Servlet/getSomething")) 
 			response.getWriter().append("[{\"name\":\"Adam\",\"Age\":19},{\"name\":\"Brian\",\"Age\":24},{\"name\":\"Jackie\",\"Age\":23}]");
 		else if(uri.equals("/Project2/Servlet/QualityAuditTests")) {
-			System.out.println("Here");
+			System.out.println("Run TestNG Quality Audit Tests......");
 			TestListenerAdapter adapter = new TestListenerAdapter();
 			TestNG testng = new TestNG();
-			List<String> suites = new ArrayList<String>();
-			File f = new File("me.text");
-			System.out.println(f.getAbsolutePath());
-			System.out.println(f.getCanonicalPath());
-			System.out.println(f.getPath());
+			List<String> suites = new ArrayList<String>();;
+			
 			//path to xml
 			suites.add("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\test\\resources\\testngAuditPage.xml"); 
 			testng.setVerbose(10);
