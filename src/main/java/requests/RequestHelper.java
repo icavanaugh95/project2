@@ -37,7 +37,7 @@ public class RequestHelper {
 		}
 		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {
 			// execute command from command line
-			String cmd = "cmd /c C:\\Users\\Administrator\\AppData\\Roaming\\npm\\protractor C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests\\conf.j";
+			String cmd = "cmd /c start C:/Users/Administrator/Desktop/protractor";
 			String line = "";
 			Runtime run = Runtime.getRuntime();
 			Process pr = run.exec(cmd);
