@@ -43,7 +43,7 @@ public class RequestHelper {
 			 * chdir "C:\Users\Administrator\.jenkins\workspace\Project 2\protractorTests"
 C:\Users\Administrator\AppData\Roaming\npm\protractor conf.js
 			 */
-			String cmd = "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\protractor C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests\\conf.js"; 
+			String cmd = "chdir \"C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests\" & C:\\Users\\Administrator\\AppData\\Roaming\\npm\\protractor conf.js"; 
 			String line = "";
 			Runtime run = Runtime.getRuntime();
 			Process pr = run.exec(cmd);
