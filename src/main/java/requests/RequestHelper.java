@@ -39,9 +39,17 @@ public class RequestHelper {
 			// execute command from command line
 			Runtime run = Runtime.getRuntime();
 			Process pr = run.exec("cmd /c cd C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests & protractor conf.js");
+			System.out.println("After run.exec");
 			try {
 				pr.waitFor();
+				System.out.println("After pr.WaitFor");
 			} catch (InterruptedException e) {
+				// something went wrong
+				String line = "";
+				BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+				while((line = buf.readLine()) != null) {
+					response.getWriter().append(line);
+				}
 				e.printStackTrace();
 			}
 			String line = "";
