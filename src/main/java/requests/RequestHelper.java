@@ -39,7 +39,7 @@ public class RequestHelper {
 			// execute command from command line
 			String line = "Nothing";
 			Runtime run = Runtime.getRuntime();
-			Process pr = run.exec("cmd /c cd C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests & protractor conf.js");
+			Process pr = run.exec("cmd /c cd C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests & dir");
 //			Process pr = run.exec("cmd /c dir");
 		
 			try {
