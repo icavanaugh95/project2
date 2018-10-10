@@ -38,7 +38,8 @@ public class RequestHelper {
 		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {
 			// execute command from command line
 			Runtime run = Runtime.getRuntime();
-			Process pr = run.exec("cmd /c cd C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests & protractor conf.js");
+//			Process pr = run.exec("cmd /c cd C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests & protractor conf.js");
+			Process pr = run.exec("cmd /c dir");
 			System.out.println("After run.exec");
 			try {
 				pr.waitFor();
