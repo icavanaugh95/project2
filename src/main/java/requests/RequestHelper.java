@@ -37,38 +37,22 @@ public class RequestHelper {
 		}
 		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {
 			// execute command from command line
-			String line = "Nothing";
+			String line = "";
 			Runtime run = Runtime.getRuntime();
-			Process pr = run.exec("cmd /c call C:\\Users\\Administrator\\Desktop\\protractor");
-//			Process pr = run.exec("cmd /c dir");
-		
+			Process pr = run.exec("cmd /c call C:/Users/Administrator/Desktop/protractor");
+			
 			try {
 				pr.waitFor();
-				response.getWriter().println("After process.waitFor()");
-			} catch (Exception e) {
-				// something went wrong
-				response.getWriter().println(e.getMessage());
-				BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
-				while((line = buf.readLine()) != null) {
-					
-					response.getWriter().println(line);
-				}
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
 			BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
-			if(buf.readLine() != null) {
-				response.getWriter().println("Buf if");
-				while((line = buf.readLine()) != null) {
-					System.out.println(line);
-					response.getWriter().println(line);
-				}
+			while((line = buf.readLine()) != null) {
+				System.out.println(line);
+				response.getWriter().println(line);
 			}
-		
-			if(line.equals("Nothing")) {
-				System.out.println("Something bad happened");
-				response.getWriter().println("Something bad happened :(");
-			}
+
 			
 			response.getWriter().println("End line");
 		}
