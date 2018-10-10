@@ -18,4 +18,8 @@ export class RequestsService {
   runQualityAuditTests():Observable<any>{
     return this.http.get("http://54.174.104.191:8080/Project2/Servlet/QualityAuditTests");
   }
+
+  runProtractorTests():Observable<any>{
+    return this.http.get("http://54.174.104.191:8080/Project2/Servlet/ProtractorTests");
+  }
 }
