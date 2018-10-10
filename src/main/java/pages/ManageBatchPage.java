@@ -20,7 +20,11 @@ public class ManageBatchPage {
 	}
 	
 	public WebElement getCreateBatch() {
-		return driver.findElement(By.cssSelector("#manage > div:nth-child(1) > div > div > ul > li:nth-child(3)"));
+		return driver.findElement(By.cssSelector("#manage > div:nth-child(1) > div > div > ul > li:nth-child(3) > a"));
+	}
+	
+	public WebElement getCreateBatchBox5() {
+		return driver.findElement(By.cssSelector("#goodGrade"));
 	}
 	public WebElement getImportBatch() {
 		return driver.findElement(By.cssSelector("#manage > div:nth-child(1) > div > div > ul > li:nth-child(2) > a"));
@@ -102,6 +106,8 @@ public class ManageBatchPage {
 	}
 	
 	public WebElement getGoodGrade() {
+		wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#createBatchModal > div > div > div.modal-body > div:nth-child(5) > div:nth-child(1)")));
 		return driver.findElement(By.cssSelector("#goodGrade"));
 	}
 
