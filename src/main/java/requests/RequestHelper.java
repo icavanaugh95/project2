@@ -44,7 +44,8 @@ public class RequestHelper {
 		
 			try {
 				pr.waitFor();
-			} catch (InterruptedException e) {
+				response.getWriter().println("After process.waitFor()");
+			} catch (Exception e) {
 				// something went wrong
 				response.getWriter().println(e.getMessage());
 				BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
