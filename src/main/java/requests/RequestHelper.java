@@ -41,7 +41,7 @@ public class RequestHelper {
 		}
 		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {			
 			// execute command from command line
-//			String cmd = "cmd /c start C:/Users/Administrator/Desktop/protractor";
+
 //			String cmd = "cmd /c protractor C:\\Users\\Ian\\Documents\\workspace-sts-3.9.5.RELEASE\\Project2\\protractorTests\\conf.js";
 
 			String cmd = "cmd /c chdir C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests & C:\\Users\\Administrator\\AppData\\Roaming\\npm\\protractor conf.js";
@@ -56,35 +56,16 @@ public class RequestHelper {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+			
+			BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream())); // gets protractor output
 			String str = "", data = "";
 			while ((str = buf.readLine()) != null) {
-				data += str + "\n";
+				data += str + "\n"; // puts in a formatted string
 			}
-			// direct filepath to practor output
-//			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\webapps\\Project2\\output.txt");
-//			
-////			File f = new File("C:\\Users\\Ian\\Documents\\workspace-sts-3.9.5.RELEASE\\Project2\\src\\main\\webapp\\this.txt");
-//			while(!f.exists()) { // waits for file to be created
-//				try {
-//					System.out.println("File not found");
-//					Thread.sleep(1000); // bad but only way to do it :(
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//			System.out.println("File found");
-//			BufferedReader br = new BufferedReader(new FileReader(f));
-//			String line, data = "";
-//			while ((line = br.readLine()) != null) {
-//			       data += line + "\n";
-//			}
-//			
-			response.getWriter().append(data);
+		
+			response.getWriter().append(data); // send protractor data
 			
 			buf.close();
-//			br.close();
-//			f.delete();
 			pr.destroy();
 		}
 	}
