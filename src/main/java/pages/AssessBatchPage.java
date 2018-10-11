@@ -141,6 +141,36 @@ public class AssessBatchPage {
 	public WebElement createAssesmentButton() {
 		return driver.findElement(By.cssSelector("body > div > ui-view > ui-view > div:nth-child(1) > div > div.col-md-12.col-lg-12.top10 > ul:nth-child(1) > li:nth-child(4) > a"));
 	}
+	
+	public List<WebElement> getCreateAssessmentCategories(){
+		WebElement outerDiv = driver.findElement(By.cssSelector("#createAssessmentModal > div > div > form > div.modal-body > div:nth-child(1) > div"));
+		
+		return outerDiv.findElement(By.cssSelector("#category")).findElements(By.tagName("option"));
+		 
+	}
+	
+	public WebElement maxPoints() {
+		WebElement outerDiv = driver.findElement(By.cssSelector("#createAssessmentModal > div > div > form > div.modal-body > div:nth-child(2) > div:nth-child(1)"));
+		
+		return outerDiv.findElement(By.tagName("input"));
+		
+	}
+	
+	public List<WebElement> getAssessmentTypeCategories(){
+		WebElement outerDiv = driver.findElement(By.cssSelector("#createAssessmentModal > div > div > form > div.modal-body > div:nth-child(2) > div:nth-child(2)"));
+		
+		return outerDiv.findElement(By.tagName("select")).findElements(By.tagName("option"));
+	}
+	
+	public WebElement getCreateAssessmentSave() {
+		return driver.findElement(By.cssSelector("#createAssessmentModal > div > div > form > div.modal-footer > input"));
+	}
+	
+	public WebElement getCloseButton() {
+		return driver.findElement(By.cssSelector("#createAssessmentModal > div > div > form > div.modal-footer > button"));
+	}
+	
+	
 
 	public WebElement importGradesButton() {
 		return driver.findElement(By.cssSelector("body > div > ui-view > ui-view > div:nth-child(1) > div > div.col-md-12.col-lg-12.top10 > ul:nth-child(1) > li:nth-child(3) > a"));
@@ -267,7 +297,7 @@ public class AssessBatchPage {
 	
 	
 	public List<WebElement> getTableHeaders(){
-		return driver.findElements(By.cssSelector("#trainer-assess-table > div > div > ul > ul > table > thead > tr"));
+		return driver.findElement(By.cssSelector("#trainer-assess-table > div > div > ul > ul > table > thead > tr")).findElements(By.tagName("th"));
 		
 	}
 	
