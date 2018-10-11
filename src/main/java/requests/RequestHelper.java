@@ -2,8 +2,10 @@ package requests;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,6 @@ public class RequestHelper {
 			response.getWriter().append("[{\"name\":\"Adam\",\"Age\":19},{\"name\":\"Brian\",\"Age\":24},{\"name\":\"Jackie\",\"Age\":23}]");
 		else if(uri.equals("/Project2/Servlet/QualityAuditTests")) {
 			System.out.println("Run TestNG Quality Audit Tests......");
-			TestListenerAdapter adapter = new TestListenerAdapter();
 			TestNG testng = new TestNG();
 			List<String> suites = new ArrayList<String>();;
 			
@@ -34,25 +35,47 @@ public class RequestHelper {
 			testng.setTestSuites(suites);
 			testng.setOutputDirectory("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\webapps\\Project2");
 			testng.run();
-			response.getWriter().println("Tests are complete");
+			
+			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Quality Audit Page\\Test page.html");
+			
+			BufferedReader br = new BufferedReader(new FileReader(f));
+			String line = "", data = "";
+			while((line = br.readLine()) != null) {
+				data += line + "\n";
+			}
+			response.getWriter().append(data);
+//			response.getWriter().println("Tests are complete");
 //			response.sendRedirect("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Quality Audit Page\\Test page.html");
 		}
-		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {
+		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {			
 			// execute command from command line
-			String cmd = "cmd /c start C:/Users/Administrator/Desktop/protractor";
+
+//			String cmd = "cmd /c protractor C:\\Users\\Ian\\Documents\\workspace-sts-3.9.5.RELEASE\\Project2\\protractorTests\\conf.js";
+
+			String cmd = "cmd /c chdir C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests & C:\\Users\\Administrator\\AppData\\Roaming\\npm\\protractor conf.js";
 			Runtime run = Runtime.getRuntime();
+			System.out.println("Before exe");
 			Process pr = run.exec(cmd);
+			System.out.println("After run");
 			
 			try {
 				pr.waitFor();
+				System.out.println("After for");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
+			BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream())); // gets protractor output
+			String str = "", data = "";
+			while ((str = buf.readLine()) != null) {
+				data += str + "\n"; // puts in a formatted string
+			}
+		
+			response.getWriter().append(data); // send protractor data
 			
-			response.sendRedirect("https://angular.io/guide/observables");
-			
+			buf.close();
 			pr.destroy();
 		}
 	}
+
 }

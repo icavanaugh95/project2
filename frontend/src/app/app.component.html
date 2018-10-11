@@ -7,6 +7,6 @@
 <button (click) = "getData()">Test Connection To Servlet</button>
 <h1>{{ info }}</h1><br>
 <button (click) = "getQualityAuditTestResults()">Run Quality Audit Page Tests</button>
-<h1>{{ qualityAuditResults }}</h1><br>
+<pre [innerHTML]="qualityAuditResults" *ngIf="qualityAuditResults"></pre><br>
 <button (click) = "getProtractorResults()">Run Protractor Tests</button>
-<h1><pre>{{ protractorResults }}</pre></h1><br>
+<pre [innerHTML]="protractorResults" *ngIf="protractorResults"></pre><br>

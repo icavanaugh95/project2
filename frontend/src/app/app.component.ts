@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RequestsService } from './services/requests.service';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
@@ -8,10 +10,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private requestService: RequestsService) {}
+  constructor(private requestService: RequestsService, private http: HttpClient) {}
 
   title = 'Project 2 Front End';
-  info = "Nothing yet";
+  info = "";
 
   // You probably need a variable for the output
   qualityAuditResults = "Nothing right now :(";
@@ -40,30 +42,24 @@ export class AppComponent {
     this.qualityAuditResults = "Let me get that for you";
 
     this.qualityAudit.subscribe((resp) => {
-      // what to do if success
-      // this.qualityAuditResults = resp;
-
-      console.log(resp);
-      this.qualityAuditResults = "I succeeded!";
-      
-
+      // success
+      this.qualityAuditResults = resp;
     }, // end succes function
       (err) => {
-        // what to do if fails
-        this.qualityAuditResults = err;
-
+        // failure
+        this.qualityAuditResults = err.error.text;
     }); // end failure function
   };
 
 
   getProtractorResults(){
-    this.protractorResults = "Let me get that for you";
-
+    this.protractorResults = "let me get that for you";
     this.protractor.subscribe((resp) => {
-      console.log(resp);
+      // success
       this.protractorResults = resp;
+      console.log(this.protractorResults);
     }, (err) => {
-      console.log(err);
+      // failure
       this.protractorResults = err.error.text;
     });
   }
