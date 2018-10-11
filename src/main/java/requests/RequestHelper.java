@@ -46,8 +46,50 @@ public class RequestHelper {
 			response.getWriter().append(data);
 //			response.getWriter().println("Tests are complete");
 //			response.sendRedirect("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Quality Audit Page\\Test page.html");
-		}
-		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {			
+		}else if(uri.equals("/Project2/Servlet/CreateBatch")){
+			System.out.println("Run TestNG Create Batch Tests......");
+			TestNG testng = new TestNG();
+			List<String> suites = new ArrayList<String>();;
+			
+			//path to xml
+			suites.add("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\test\\resources\\testngCreateBatch.xml"); 
+			testng.setVerbose(10);
+			testng.setTestSuites(suites);
+			testng.setOutputDirectory("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\webapps\\Project2");
+			testng.run();
+			
+			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Create Batch Page\\Test page.html");
+			
+			BufferedReader br = new BufferedReader(new FileReader(f));
+			String line = "", data = "";
+			while((line = br.readLine()) != null) {
+				data += line + "\n";
+			}
+			response.getWriter().append(data);
+			
+			
+		}else if(uri.equals("/Project2/Servlet/ManageBatch")){
+			System.out.println("Run TestNG Manage Batch Tests......");
+			TestNG testng = new TestNG();
+			List<String> suites = new ArrayList<String>();;
+			
+			//path to xml
+			suites.add("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\test\\resources\\testngManageBatch.xml"); 
+			testng.setVerbose(10);
+			testng.setTestSuites(suites);
+			testng.setOutputDirectory("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\webapps\\Project2");
+			testng.run();
+			
+			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Manage Batch Page\\Test page.html");
+			
+			BufferedReader br = new BufferedReader(new FileReader(f));
+			String line = "", data = "";
+			while((line = br.readLine()) != null) {
+				data += line + "\n";
+			}
+			response.getWriter().append(data);
+			
+		}else if(uri.equals("/Project2/Servlet/ProtractorTests")) {			
 			// execute command from command line
 
 //			String cmd = "cmd /c protractor C:\\Users\\Ian\\Documents\\workspace-sts-3.9.5.RELEASE\\Project2\\protractorTests\\conf.js";

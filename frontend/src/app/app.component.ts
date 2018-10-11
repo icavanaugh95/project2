@@ -18,13 +18,16 @@ export class AppComponent {
   // You probably need a variable for the output
   qualityAuditResults = "Nothing right now :(";
   protractorResults = "Nothing yet :(";
+  createBatchResults = "Nothing yet :(";
+  manageBatchResults = "Nothing yet :(";
 
   data:Observable<any> = this.requestService.getSomething();
 
   // Assign a variable to the method you created to hit the servlet
   qualityAudit:Observable<any> = this.requestService.runQualityAuditTests();
   protractor:Observable<any> = this.requestService.runProtractorTests();
-
+  createBatch:Observable<any> = this.requestService.runCreateBatch();
+  manageBatch:Observable<any> = this.requestService.runManageBatch();
 
   getData(){
     this.data.subscribe((resp) => { 
@@ -53,7 +56,7 @@ export class AppComponent {
 
 
   getProtractorResults(){
-    this.protractorResults = "let me get that for you";
+    this.protractorResults = "Let me get that for you";
     this.protractor.subscribe((resp) => {
       // success
       this.protractorResults = resp;
@@ -62,5 +65,30 @@ export class AppComponent {
       // failure
       this.protractorResults = err.error.text;
     });
-  }
+  };
+
+  getCreateBatchResults(){
+    this.createBatchResults = "Let me get that for you";
+    this.createBatch.subscribe((resp) => {
+      // success
+      this.createBatchResults = resp;
+      console.log(this.createBatchResults);
+    }, (err) => {
+      // failure
+      this.createBatchResults = err.error.text;
+    });
+  };
+
+  getManageBatchResults(){
+    this.manageBatchResults = "Let me get that for you";
+    this.manageBatch.subscribe((resp) => {
+      // success
+      this.manageBatchResults = resp;
+      console.log(this.manageBatchResults);
+    }, (err) => {
+      // failure
+      this.manageBatchResults = err.error.text;
+    });
+
+  };
 }
