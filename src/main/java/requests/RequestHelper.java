@@ -26,7 +26,6 @@ public class RequestHelper {
 			response.getWriter().append("[{\"name\":\"Adam\",\"Age\":19},{\"name\":\"Brian\",\"Age\":24},{\"name\":\"Jackie\",\"Age\":23}]");
 		else if(uri.equals("/Project2/Servlet/QualityAuditTests")) {
 			System.out.println("Run TestNG Quality Audit Tests......");
-			TestListenerAdapter adapter = new TestListenerAdapter();
 			TestNG testng = new TestNG();
 			List<String> suites = new ArrayList<String>();;
 			
@@ -36,7 +35,16 @@ public class RequestHelper {
 			testng.setTestSuites(suites);
 			testng.setOutputDirectory("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\webapps\\Project2");
 			testng.run();
-			response.getWriter().println("Tests are complete");
+			
+			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Quality Audit Page\\Test page.html");
+			
+			BufferedReader br = new BufferedReader(new FileReader(f));
+			String line = "", data = "";
+			while((line = br.readLine()) != null) {
+				data += line + "\n";
+			}
+			response.getWriter().append(data);
+//			response.getWriter().println("Tests are complete");
 //			response.sendRedirect("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Quality Audit Page\\Test page.html");
 		}
 		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {			
