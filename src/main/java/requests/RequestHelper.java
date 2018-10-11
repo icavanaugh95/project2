@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +50,11 @@ public class RequestHelper {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+			BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+			String str = "";
+			while ((str = buf.readLine()) != null) {
+				System.out.println(str);
+			}
 			// direct filepath to practor output
 			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\webapps\\Project2\\output.txt");
 			
@@ -63,14 +68,18 @@ public class RequestHelper {
 				}
 			}
 			System.out.println("File found");
-				BufferedReader br = new BufferedReader(new FileReader(f));
-			    String line, data = "";
-			    while ((line = br.readLine()) != null) {
+			BufferedReader br = new BufferedReader(new FileReader(f));
+			String line, data = "";
+			while ((line = br.readLine()) != null) {
 			       data += line + "\n";
-			    }
+			}
+			
 			response.getWriter().append(data);
+			
+			br.close();
 			f.delete();
 			pr.destroy();
 		}
 	}
+
 }
