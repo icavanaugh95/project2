@@ -15,11 +15,13 @@ export class AppComponent {
 
   // You probably need a variable for the output
   qualityAuditResults = "Nothing right now :(";
-  
+  protractorResults = "Nothing yet :(";
+
   data:Observable<any> = this.requestService.getSomething();
 
   // Assign a variable to the method you created to hit the servlet
   qualityAudit:Observable<any> = this.requestService.runQualityAuditTests();
+  protractor:Observable<any> = this.requestService.runProtractorTests();
 
 
   getData(){
@@ -35,13 +37,14 @@ export class AppComponent {
   // Do something with the data
   // This gets bound to the button in the app.component.html
   getQualityAuditTestResults(){
+    this.qualityAuditResults = "Let me get that for you";
+
     this.qualityAudit.subscribe((resp) => {
       // what to do if success
       // this.qualityAuditResults = resp;
 
-      this.qualityAuditResults = "Looks like it work :) ";
-      this.qualityAuditResults += "Add code to disable button so it doesn't run tests multiple times. ";
-      this.qualityAuditResults += "Gotta return some results."
+      console.log(resp);
+      this.qualityAuditResults = "I succeeded!";
       
 
     }, // end succes function
@@ -51,4 +54,17 @@ export class AppComponent {
 
     }); // end failure function
   };
+
+
+  getProtractorResults(){
+    this.protractorResults = "Let me get that for you";
+
+    this.protractor.subscribe((resp) => {
+      console.log(resp);
+      this.protractorResults = resp;
+    }, (err) => {
+      console.log(err);
+      this.protractorResults = err.error.text;
+    });
+  }
 }
