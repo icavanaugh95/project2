@@ -50,7 +50,7 @@ public class RequestHelper {
 			}
 			
 			
-			response.getWriter().println("End");
+			response.sendRedirect("https://angular.io/guide/observables");
 			
 			pr.destroy();
 		}

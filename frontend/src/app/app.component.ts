@@ -37,6 +37,8 @@ export class AppComponent {
   // Do something with the data
   // This gets bound to the button in the app.component.html
   getQualityAuditTestResults(){
+    this.qualityAuditResults = "Let me get that for you";
+
     this.qualityAudit.subscribe((resp) => {
       // what to do if success
       // this.qualityAuditResults = resp;
@@ -55,9 +57,11 @@ export class AppComponent {
 
 
   getProtractorResults(){
+    this.protractorResults = "Let me get that for you";
+
     this.protractor.subscribe((resp) => {
       console.log(resp);
-      this.protractorResults = resp.text;
+      this.protractorResults = resp;
     }, (err) => {
       console.log(err);
       this.protractorResults = err.error.text;
