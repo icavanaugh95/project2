@@ -55,7 +55,8 @@ public class TrainerPage {
 	//Used for Add Trainer, Edit Trainer, and Deactivate Trainer
 	public void waitForPopupTrainerMenuClose() {
 		wait = new WebDriverWait(driver, 20);
-		if (this.getAddTrainerMenu().isDisplayed()) {
+		wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Create Trainer")));
+		/*if (this.getAddTrainerMenu().isDisplayed()) {
 			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("trainerModalLabel")));
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h4:nth-child(2)")));
 		} else if (this.getEditTrainerMenu().isDisplayed()) {
@@ -63,7 +64,7 @@ public class TrainerPage {
 		} else {
 			driver.quit();
 			throw new IllegalArgumentException("ERROR: Either Add Trainer or Edit Trainer menu is being currently displayed.");
-		}
+		}*/
 	}
 
 	public WebElement getCreateTrainerButton() {
@@ -95,10 +96,10 @@ public class TrainerPage {
 			this.waitForAddTrainerMenuOpen();
 		} else if (this.getEditTrainerMenu().isDisplayed()) {
 			this.waitForEditTrainerMenuOpen();
-		} else {
+		}/* else {
 			driver.quit();
 			throw new IllegalArgumentException("ERROR: Neither Add Trainer nor Edit Trainer menus are displayed.");
-		}
+		}*/
 		return driver.findElement(By.id("trainerName"));
 	}
 
@@ -107,9 +108,9 @@ public class TrainerPage {
 			this.waitForAddTrainerMenuOpen();
 		} else if (this.getEditTrainerMenu().isDisplayed()) {
 			this.waitForEditTrainerMenuOpen();
-		} else {
+		}/* else {
 			throw new IllegalArgumentException("ERROR: Neither Add Trainer nor Edit Trainer menus are displayed.");
-		}
+		}*/
 		return driver.findElement(By.id("trainerEmail"));
 	}
 
@@ -118,10 +119,10 @@ public class TrainerPage {
 			this.waitForAddTrainerMenuOpen();
 		} else if (this.getEditTrainerMenu().isDisplayed()) {
 			this.waitForEditTrainerMenuOpen();
-		} else {
+		}/* else {
 			driver.quit();
 			throw new IllegalArgumentException("ERROR: Neither Add Trainer nor Edit Trainer menus are displayed.");
-		}
+		}*/
 		return driver.findElement(By.id("Title"));
 		//return driver.findElement(By.id("trainerTitle"));
 	}
@@ -131,10 +132,10 @@ public class TrainerPage {
 			this.waitForAddTrainerMenuOpen();
 		} else if (this.getEditTrainerMenu().isDisplayed()) {
 			this.waitForEditTrainerMenuOpen();
-		} else {
+		}/* else {
 			driver.quit();
 			throw new IllegalArgumentException("ERROR: Neither Add Trainer nor Edit Trainer menus are displayed.");
-		}
+		}*/
 		return driver.findElement(By.id("trainerTier"));
 	}
 
@@ -147,7 +148,7 @@ public class TrainerPage {
 
 	//Only works if there is one table (i.e. one <tbody>) on the page
 	public WebElement getAllTrainersTable() {
-		//waitForAddTrainerMenuClose();	//can cause test to halt
+		waitForPopupTrainerMenuClose();	//can cause test to halt
 		waitForTrainerPageOpen();
 		return driver.findElement(By.tagName("tbody"));
 	}
@@ -175,10 +176,13 @@ public class TrainerPage {
 		} else if (this.getEditTrainerMenu().isDisplayed()) {
 			this.waitForEditTrainerMenuOpen();
 			return driver.findElement(By.cssSelector("#editTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > button:nth-child(2)"));
-		} else {
+		}/* else {
 			driver.quit();
 			throw new IllegalArgumentException("ERROR: Neither Add Trainer nor Edit Trainer menus are displayed.");
-		}
+		}*/
+		
+		//For the sake of my sanity, return Add Trainer menu Close by default
+		return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > button:nth-child(2)"));
 	}
 
 	public WebElement getGrayX() {
@@ -188,10 +192,13 @@ public class TrainerPage {
 		} else if (this.getEditTrainerMenu().isDisplayed()) {
 			this.waitForEditTrainerMenuOpen();
 			return driver.findElement(By.cssSelector("#editTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(1)"));
-		} else {
+		}/* else {
 			driver.quit();
 			throw new IllegalArgumentException("ERROR: Neither Add Trainer nor Edit Trainer menus are displayed.");
-		}
+		}*/
+		
+		//For the sake of my sanity, return Add Trainer menu GrayX by default
+		return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(1)"));		
 
 	}
 
