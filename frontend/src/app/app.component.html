@@ -8,21 +8,21 @@
 <h1>{{ info }}</h1><br>
 <button (click) = "getQualityAuditTestResults()">Run Quality Audit Page Tests</button>
 <pre [innerHTML]="qualityAuditResults" *ngIf="qualityAuditResults"></pre><br>
-<hr>
+<hr *ngIf="qualityAuditResults">
 <button (click) = "getProtractorResults()">Run Protractor Tests</button>
 <pre [innerHTML]="protractorResults" *ngIf="protractorResults"></pre><br>
-<hr>
+<hr *ngIf="protractorResults">
 <button (click) = "getCreateBatchResults()">Run Create Batch Tests</button>
 <pre [innerHTML]="createBatchResults" *ngIf="createBatchResults"></pre><br>
-<hr>
+<hr *ngIf="createBatchResults">
 <button (click) = "getManageBatchResults()">Run Manage Batch Tests</button>
 <pre [innerHTML]="manageBatchResults" *ngIf="manageBatchResults"></pre><br>
-<hr>
+<hr *ngIf="manageBatchResults">
 <button (click) = "getTrainerTestResults()">Run Trainer Tests</button>
 <pre [innerHTML]="trainerResults" *ngIf="trainerResults"></pre><br>
-<hr>
+<hr *ngIf="trainerResults">
 <button (click) = "getNavBarResults()">Run Nav Bar Tests</button>
 <pre [innerHTML]="navBarResults" *ngIf="navBarResults"></pre><br>
-<hr>
+<hr *ngIf="navBarResults">
 <button (click) = "getAssessBatchResults()">Run Assess Batch Tests</button>
 <pre [innerHTML]="assessBatchResults" *ngIf="assessBatchResults"></pre><br>
