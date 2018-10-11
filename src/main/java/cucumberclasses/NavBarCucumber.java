@@ -35,14 +35,16 @@ public class NavBarCucumber {
 	@Given("^I am logged in to the Caliber website nav$")
 	public void i_am_logged_in_to_the_Caliber_website_nav() throws Throwable {
 
-		File file = new File("src/main/resources/chromedriver.exe");
+//		File file = new File("src/main/resources/chromedriver.exe");
+		File file = new File("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\main\\resources\\chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver",file.getAbsolutePath());
 		driver = new ChromeDriver();
 		login = new MainPage(driver);
 		home = new HomePage(driver);
 
 		Properties props = new Properties();
-		FileInputStream in = new FileInputStream("src/main/resources/login.properties");
+//		FileInputStream in = new FileInputStream("src/main/resources/login.properties");
+		FileInputStream in = new FileInputStream("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\main\\resources\\login.properties");
 		props.load(in);
 
 		String url = props.getProperty("url");

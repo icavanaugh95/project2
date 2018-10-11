@@ -20,6 +20,7 @@ import pages.HomePage;
 import pages.MainPage;
 import pages.ManageBatchPage;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
@@ -37,14 +38,16 @@ public class CreateBatchTest {
 	
 	@BeforeSuite
 	void TestingCreateBatch() throws IOException {
-		File file = new File("src/main/resources/chromedriver.exe");
+//		File file = new File("src/main/resources/chromedriver.exe");
+		File file = new File("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\main\\resources\\chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
 		driver = new ChromeDriver();
 		login = new MainPage(driver);
 		manage = new ManageBatchPage(driver);
 
 		Properties props = new Properties();
-		FileInputStream in = new FileInputStream("src/main/resources/login.properties");
+//		FileInputStream in = new FileInputStream("src/main/resources/login.properties");
+		FileInputStream in = new FileInputStream("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\main\\resources\\login.properties");
 		props.load(in);
 
 		String url = props.getProperty("url");
@@ -111,6 +114,10 @@ public class CreateBatchTest {
 			manage.getSaveBatch().click();
 			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#createBatchModal > div > div > div.modal-footer > input")));
 	
+	}
+	@AfterSuite
+	public void cleanup() {
+		driver.quit();
 	}
 }
 

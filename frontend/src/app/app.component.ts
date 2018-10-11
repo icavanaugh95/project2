@@ -16,15 +16,28 @@ export class AppComponent {
   info = "";
 
   // You probably need a variable for the output
-  qualityAuditResults = "Nothing right now :(";
+  qualityAuditResults = "Nothing yet :(";
   protractorResults = "Nothing yet :(";
+  locationResults = "Nothing yet :(";
+  reportResults = "Nothing yet :(";
+  createBatchResults = "Nothing yet :(";
+  manageBatchResults = "Nothing yet :(";
+  trainerResults = "Nothing yet :(";
+  navBarResults = "Nothing yet :(";
+  assessBatchResults = "Nothing yet :(";
 
   data:Observable<any> = this.requestService.getSomething();
 
   // Assign a variable to the method you created to hit the servlet
   qualityAudit:Observable<any> = this.requestService.runQualityAuditTests();
   protractor:Observable<any> = this.requestService.runProtractorTests();
-
+  locationTests:Observable<any> = this.requestService.runLocationTests();
+  reportTests:Observable<any> = this.requestService.runReportTests();
+  createBatch:Observable<any> = this.requestService.runCreateBatch();
+  manageBatch:Observable<any> = this.requestService.runManageBatch();
+  trainerTests:Observable<any> = this.requestService.runTrainerTests();
+  navBarTests:Observable<any> = this.requestService.runNavBarTests();
+  assessBatch:Observable<any> = this.requestService.runAssessBatchTests();
 
   getData(){
     this.data.subscribe((resp) => { 
@@ -53,7 +66,7 @@ export class AppComponent {
 
 
   getProtractorResults(){
-    this.protractorResults = "let me get that for you";
+    this.protractorResults = "Let me get that for you";
     this.protractor.subscribe((resp) => {
       // success
       this.protractorResults = resp;
@@ -62,5 +75,91 @@ export class AppComponent {
       // failure
       this.protractorResults = err.error.text;
     });
+  };
+
+  getLocationResults(){
+    this.locationResults = "Let me get that for you";
+    this.locationTests.subscribe((resp) => {
+      // success
+      this.locationResults = resp;
+      console.log(this.locationResults);
+    }, (err) => {
+      // failure
+      this.locationResults = err.error.text;
+    });
+  };
+
+  getReportResults(){
+    this.reportResults = "Let me get that for you";
+    this.reportTests.subscribe((resp) => {
+      // success
+      this.reportResults = resp;
+      console.log(this.reportResults);
+    }, (err) => {
+      // failure
+      this.reportResults = err.error.text;
+    });
   }
+
+  getCreateBatchResults(){
+    this.createBatchResults = "Let me get that for you";
+    this.createBatch.subscribe((resp) => {
+      // success
+      this.createBatchResults = resp;
+      console.log(this.createBatchResults);
+    }, (err) => {
+      // failure
+      this.createBatchResults = err.error.text;
+    });
+  };
+
+  getManageBatchResults(){
+    this.manageBatchResults = "Let me get that for you";
+    this.manageBatch.subscribe((resp) => {
+      // success
+      this.manageBatchResults = resp;
+      console.log(this.manageBatchResults);
+    }, (err) => {
+      // failure
+      this.manageBatchResults = err.error.text;
+    });
+  };
+
+  getTrainerTestResults(){
+    this.trainerResults = "Let me get that for you";
+    this.trainerTests.subscribe((resp) => {
+      // success
+      this.trainerResults = resp;
+      console.log(this.trainerResults);
+    }, (err) => {
+      // failure
+      this.trainerResults = err.error.text;
+    });
+  };
+
+  getNavBarResults(){
+    this.navBarResults = "Let me get that for you";
+    this.navBarTests.subscribe((resp) => {
+      // success
+      this.navBarResults = resp;
+      console.log(this.navBarResults);
+    }, (err) => {
+      // failure
+      this.navBarResults = err.error.text;
+    });
+  };
+
+  getAssessBatchResults(){
+    this.assessBatchResults = "Let me get that for you";
+    this.assessBatch.subscribe((resp) => {
+      // success
+      this.assessBatchResults = resp;
+      console.log(this.assessBatchResults);
+    }, (err) => {
+      // failure
+      this.assessBatchResults = err.error.text;
+
+    });
+  };
+
 }

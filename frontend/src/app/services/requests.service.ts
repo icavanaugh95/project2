@@ -21,6 +21,36 @@ export class RequestsService {
 
   runProtractorTests():Observable<any>{
     // return this.http.get("http://localhost:3000/Project2/Servlet/ProtractorTests"); // local
-    return this.http.get("http://54.174.104.191:8080/Project2/Servlet/ProtractorTests");
+    return this.http.get("http://54.174.104.191:8080/Project2/Servlet/CategoryTests");
+  }
+
+  runLocationTests():Observable<any>{
+    // return this.http.get("http://localhost:3000/Project2/Servlet/ProtractorTests"); // local
+    return this.http.get("http://54.174.104.191:8080/Project2/Servlet/LocationTests");
+  }
+
+  runReportTests():Observable<any>{
+    // return this.http.get("http://localhost:3000/Project2/Servlet/ProtractorTests"); // local
+    return this.http.get("http://54.174.104.191:8080/Project2/Servlet/ReportTests");
+  }
+
+  runCreateBatch():Observable<any>{
+    return this.http.get("http://54.174.104.191:8080/Project2/Servlet/CreateBatch");
+  }
+
+  runManageBatch():Observable<any>{
+    return this.http.get("http://54.174.104.191:8080/Project2/Servlet/ManageBatch");
+  }
+
+  runTrainerTests():Observable<any>{
+    return this.http.get("http://54.174.104.191:8080/Project2/Servlet/TrainerTests");
+  }
+
+  runNavBarTests():Observable<any>{
+    return this.http.get("http://54.174.104.191:8080/Project2/Servlet/NavBarTests");
+  }
+
+  runAssessBatchTests():Observable<any>{
+    return this.http.get("http://54.174.104.191:8080/Project2/Servlet/AssessBatchTests");
   }
 }

@@ -4,19 +4,19 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @CucumberOptions(
-		features = {"src/test/resources/HomePage.feature",											//Homepage
-					"src/test/resources/TrainerPageOpen.feature",									//Add Trainer
-					"src/test/resources/AddTrainerMenuOpen.feature",
-					"src/test/resources/AddTrainerValidInput.feature",
-					"src/test/resources/AddTrainerEmailLeadingTrailingWhitespaceValid.feature",
-					"src/test/resources/AddTrainerNameBlank.feature",
-					"src/test/resources/AddTrainerEmailBlank.feature",
-					"src/test/resources/AddTrainerEmailNoAt.feature",
-					"src/test/resources/AddTrainerEmailNoUserOrDomain.feature",
-					"src/test/resources/AddTrainerTitleBlank.feature",
-					"src/test/resources/AddTrainerTierBlank.feature",
-					"src/test/resources/AddTrainerMenuClose.feature",
-					"src/test/resources/AddTrainerMenuGrayX.feature",
+		features = {"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/HomePage.feature",											//Homepage
+					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/TrainerPageOpen.feature",									//Add Trainer
+					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerMenuOpen.feature",
+					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerValidInput.feature",
+					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerEmailLeadingTrailingWhitespaceValid.feature",
+					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerNameBlank.feature",
+					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerEmailBlank.feature",
+					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerEmailNoAt.feature",
+					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerEmailNoUserOrDomain.feature",
+					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerTitleBlank.feature",
+					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerTierBlank.feature",
+					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerMenuClose.feature",
+					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerMenuGrayX.feature",
 					/*"src/test/resources/EditTrainerFillInFields.feature"*/							//Edit Trainer
 					},				
 		glue = {"cucumberclasses"}
