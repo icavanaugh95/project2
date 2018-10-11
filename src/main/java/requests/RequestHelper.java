@@ -33,7 +33,6 @@ public class RequestHelper {
 			suites.add("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\test\\resources\\testngAuditPage.xml"); 
 			testng.setVerbose(10);
 			testng.setTestSuites(suites);
-			testng.setOutputDirectory("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\webapps\\Project2");
 			testng.run();
 			
 			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Quality Audit Page\\Test page.html");
@@ -55,7 +54,6 @@ public class RequestHelper {
 			suites.add("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\test\\resources\\testngCreateBatch.xml"); 
 			testng.setVerbose(10);
 			testng.setTestSuites(suites);
-			testng.setOutputDirectory("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\webapps\\Project2");
 			testng.run();
 			
 			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Create Batch Page\\Test page.html");
@@ -77,7 +75,6 @@ public class RequestHelper {
 			suites.add("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\test\\resources\\testngManageBatch.xml"); 
 			testng.setVerbose(10);
 			testng.setTestSuites(suites);
-			testng.setOutputDirectory("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\webapps\\Project2");
 			testng.run();
 			
 			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Manage Batch Page\\Test page.html");
