@@ -7,8 +7,8 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 		features = {"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/HomePage.feature",											//Homepage
 					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/TrainerPageOpen.feature",									//Add Trainer
 					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerMenuOpen.feature",
-					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerValidInput.feature",
-					/*"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerEmailLeadingTrailingWhitespaceValid.feature",
+					/*"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerValidInput.feature",
+					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerEmailLeadingTrailingWhitespaceValid.feature",
 					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerNameBlank.feature",
 					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerEmailBlank.feature",
 					"C:/Users/Administrator/.jenkins/workspace/Project 2/src/test/resources/AddTrainerEmailNoAt.feature",

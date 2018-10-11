@@ -161,13 +161,17 @@ public class TrainerPageCucumber {
 		try {
 			List<WebElement> rows = trainer.getAllTrainersTable().findElements(By.tagName("tr"));
 			tableLengthAfter = rows.size();
+			System.out.println("tableLengthBefore = " + tableLengthBefore);
+			System.out.println("tableLengthAfter = " + tableLengthAfter);
+			System.out.println("rows.size() = " + rows.size());
+			Assert.assertEquals(tableLengthAfter, tableLengthAfter-1);
 		} catch (NoSuchElementException e){
 			e.printStackTrace();
 		} finally {
 			driver.quit();
 		}
 
-		Assert.assertEquals(tableLengthBefore, tableLengthAfter-1);
+		//Assert.assertEquals(tableLengthBefore, tableLengthAfter-1);
 		
 		//Delete the trainer I just added
 		//This should not be implemented because Caliberbot apparently has no authorization to add trainers.
