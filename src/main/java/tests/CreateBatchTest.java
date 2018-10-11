@@ -73,7 +73,7 @@ public class CreateBatchTest {
 
 	//@Test(dataProvider = "Newest Batch", priority=1)
 	//public void nextBatch1(String item) {
-			String item1 = "Dave Barnes";
+			String item1 = "Dave Barnes' batch";
 			WebDriverWait wait = new WebDriverWait(driver, 20);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[id='manage']")));		//the div that holds the tabs 2018, CreateBatch, ImportBatch
 			manage.getCreateBatch().click();
