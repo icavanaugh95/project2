@@ -180,7 +180,7 @@ public class AssessBatchPage {
 		return driver.findElement(By.cssSelector("#trainer-assess-table > div > div > ul > ul > div.form-group.col-lg-12.col-md-12.col-sm-12.overall-feedback > div > a > span"));
 	}
 
-	public List<WebElement> getTaineeLinks(){
+	public List<WebElement> getTraineeLinks(){
 
 
 		StringBuilder elementStr = new StringBuilder();
@@ -332,6 +332,14 @@ public class AssessBatchPage {
 	
 	public List<WebElement> getEditAssessmentTypeOptions(WebElement dropDown){
 		return dropDown.findElements(By.tagName("option"));
+	}
+	
+	public WebElement getCreateYesButton() {
+		return driver.findElement(By.cssSelector("#confirmingweeks > div > div")).findElement(By.id("yesBtn"));
+	}
+	
+	public WebElement getCreateNoButton() {
+		return driver.findElement(By.cssSelector("#confirmingweeks > div > div > div.modal-footer > button.btn.btn-default"));
 	}
 
 
