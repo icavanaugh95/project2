@@ -1,5 +1,5 @@
 # Project 2
-Automation testing of an Angular website
+Automation testing with TestNG, Selenium WebDriver, Protract, and Cucumber
 
 * [Joshua Castor](https://github.com/BlackNinja0001) 
 * [William Parrish](https://github.com/wfparrish) 
