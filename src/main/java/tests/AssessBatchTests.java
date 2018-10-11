@@ -77,7 +77,7 @@ public class AssessBatchTests {
 	@Test
 	public void createAssessmentTest() throws InterruptedException {
 		assess.getYearSelector().click();
-		assess.getYears().get(1).click();
+		assess.getYears().get(2).click();
 		
 		
 		assess.createAssesmentButton().click();
@@ -93,6 +93,33 @@ public class AssessBatchTests {
 		wait.until(ExpectedConditions.invisibilityOf(assess.getCreateAssessmentSave()));
 		
 		Assert.assertTrue(assess.getTableHeaders().size() == (before + 1));
+		
+		
+	}
+	
+	//checks if creating weeks adds a new week.
+	@Test
+	public void createNewWeekTest() {
+		
+		List<WebElement> weeks =  assess.getBatchWeekAssessments();
+		int beforeWeekSize = weeks.size();
+		
+		WebElement plus = weeks.get(weeks.size()-1);
+		
+		plus.click();
+		
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(assess.getCreateYesButton()));
+		
+		assess.getCreateYesButton().click();
+		
+		wait.until(ExpectedConditions.elementToBeClickable(assess.getBatchSelector()));
+		
+		int afterWeekSize = assess.getBatchWeekAssessments().size();
+		
+		Assert.assertTrue(afterWeekSize == beforeWeekSize + 1);
+		
+		
 		
 		
 	}
