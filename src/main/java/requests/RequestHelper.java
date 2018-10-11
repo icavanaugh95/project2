@@ -77,7 +77,7 @@ public class RequestHelper {
 			testng.setTestSuites(suites);
 			testng.run();
 			
-			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Manage Batch Page\\Test page.html");
+			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Manage Batch Page\\Test1 page.html");
 			
 			BufferedReader br = new BufferedReader(new FileReader(f));
 			String line = "", data = "";
