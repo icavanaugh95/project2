@@ -13,11 +13,11 @@ export class AppComponent {
   constructor(private requestService: RequestsService, private http: HttpClient) {}
 
   title = 'Project 2 Front End';
-  info = "Nothing yet";
+  info = "";
 
   // You probably need a variable for the output
   qualityAuditResults = "Nothing right now :(";
-  protractorResults;
+  protractorResults = "Nothing yet :(";
 
   data:Observable<any> = this.requestService.getSomething();
 
@@ -42,23 +42,18 @@ export class AppComponent {
     this.qualityAuditResults = "Let me get that for you";
 
     this.qualityAudit.subscribe((resp) => {
-      // what to do if success
-      // this.qualityAuditResults = resp;
-
-      console.log(resp);
-      this.qualityAuditResults = "I succeeded!";
-      
-
+      // success
+      this.qualityAuditResults = resp;
     }, // end succes function
       (err) => {
-        // what to do if fails
-        this.qualityAuditResults = err;
-
+        // failure
+        this.qualityAuditResults = err.error.text;
     }); // end failure function
   };
 
 
   getProtractorResults(){
+    this.protractorResults = "let me get that for you";
     this.protractor.subscribe((resp) => {
       // success
       this.protractorResults = resp;
