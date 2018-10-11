@@ -26,7 +26,7 @@ describe("Tests for reports page", () => {
         expect(yearDropdown.isDisplayed()).toBe(true);
     })
     
-    //Next 3 tests use Ryan Lessley's batch on 11/12/17
+    //Next 3 tests use Ryan Lessley's batch on 11/18/17
     it("Should display QC data if a Trainer with QC data is selected", () => {
         //Select year 2017
         let year2017 = element(by.cssContainingText("body > div > ui-view > ui-view > div:nth-child(1) > div > div > ul > li.dropdown.open > ul > li:nth-child(3) > a","2017"));
@@ -34,7 +34,7 @@ describe("Tests for reports page", () => {
         year2017.click();
 
         //Select Trainer with QC data
-        let ryansBatch = element(by.cssContainingText(".ng-binding", "11/12/17"));
+        let ryansBatch = element(by.cssContainingText(".ng-binding", "11/18/17"));
         let batchDropdown = element(by.css("li.dropdown:nth-child(2) > a:nth-child(1)"));
         batchDropdown.click();
         browser.wait(protractor.ExpectedConditions.visibilityOf(ryansBatch), 5000);
