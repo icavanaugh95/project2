@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Create Batch Page">
+	<test name="Test2 page">
+		<classes>
+			<class name="tests.CreateBatchTest"></class>
+		</classes>
+	</test>
+</suite>
