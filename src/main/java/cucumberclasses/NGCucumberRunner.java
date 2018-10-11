@@ -17,7 +17,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 					"src/test/resources/AddTrainerTierBlank.feature",
 					"src/test/resources/AddTrainerMenuClose.feature",
 					"src/test/resources/AddTrainerMenuGrayX.feature",
-					"src/test/resources/EditTrainerFillInFields.feature"							//Edit Trainer
+					/*"src/test/resources/EditTrainerFillInFields.feature"*/							//Edit Trainer
 					},				
 		glue = {"cucumberclasses"}
 		)

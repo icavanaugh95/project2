@@ -24,52 +24,29 @@ public class TrainerPage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Create Trainer")));
 	}
 
-	/*private void waitForAddTrainerMenuOpen() {
+	public void waitForAddTrainerMenuOpen() {
 		wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("trainerModalLabel")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h4:nth-child(2)")));
 		wait.until(ExpectedConditions.attributeContains(this.getAddTrainerMenu(), "innerHTML", "Add Trainer"));
 	}
 
-	public void waitForAddTrainerMenuClosed() {
+	public void waitForEditTrainerMenuOpen() {
 		wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.attributeContains(this.getAddTrainerMenu(), "innerHTML", "Add Trainer"));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("trainerModalLabel")));
-	}
-
-	private void waitForEditTrainerMenuOpen() {
-		wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("trainerModalLabel")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#editTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h4:nth-child(2)")));
 		wait.until(ExpectedConditions.attributeContains(this.getAddTrainerMenu(), "innerHTML", "Edit Trainer"));
-	}
-
-	public void waitForEditTrainerMenuClosed() {
-		wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.attributeContains(this.getAddTrainerMenu(), "innerHTML", "Edit Trainer"));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("trainerModalLabel")));
-	}
-
-	private void waitForDeactivateTrainerMenuOpen() {
-		wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("trainerModalLabel")));
-		wait.until(ExpectedConditions.attributeContains(this.getAddTrainerMenu(), "innerHTML", "Deactivate Trainer"));
-	}
-
-	public void waitForDeactivateTrainerMenuClosed() {
-		wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.attributeContains(this.getAddTrainerMenu(), "innerHTML", "Deactivate Trainer"));
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("trainerModalLabel")));
-	}*/
-
-	//Used for Add Trainer, Edit Trainer, and Deactivate Trainer
-	private void waitForPopupTrainerMenuOpen() {
-		wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("trainerModalLabel")));
 	}
 
 	//Used for Add Trainer, Edit Trainer, and Deactivate Trainer
 	public void waitForPopupTrainerMenuClose() {
 		wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("trainerModalLabel")));
+		if (this.getAddTrainerMenu().isDisplayed()) {
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("trainerModalLabel")));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h4:nth-child(2)")));
+		} else if (this.getEditTrainerMenu().isDisplayed()) {
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("#editTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > h4:nth-child(2)")));
+		} else {
+			throw new IllegalArgumentException("ERROR: Either Add Trainer or Edit Trainer menu is being currently displayed.");
+		}
 	}
 
 	public WebElement getCreateTrainerButton() {
@@ -97,29 +74,53 @@ public class TrainerPage {
 	}
 
 	public WebElement getTrainerNameTextBox() {
-		waitForPopupTrainerMenuOpen();
+		if (this.getAddTrainerMenu().isDisplayed()) {
+			this.waitForAddTrainerMenuOpen();
+		} else if (this.getEditTrainerMenu().isDisplayed()) {
+			this.waitForEditTrainerMenuOpen();
+		} else {
+			throw new IllegalArgumentException("ERROR: Neither Add Trainer nor Edit Trainer menus are displayed.");
+		}
 		return driver.findElement(By.id("trainerName"));
 	}
 
 	public WebElement getEmailTextBox() {
-		waitForPopupTrainerMenuOpen();
+		if (this.getAddTrainerMenu().isDisplayed()) {
+			this.waitForAddTrainerMenuOpen();
+		} else if (this.getEditTrainerMenu().isDisplayed()) {
+			this.waitForEditTrainerMenuOpen();
+		} else {
+			throw new IllegalArgumentException("ERROR: Neither Add Trainer nor Edit Trainer menus are displayed.");
+		}
 		return driver.findElement(By.id("trainerEmail"));
 	}
 
 	public WebElement getTitleTextBox() {
-		waitForPopupTrainerMenuOpen();
+		if (this.getAddTrainerMenu().isDisplayed()) {
+			this.waitForAddTrainerMenuOpen();
+		} else if (this.getEditTrainerMenu().isDisplayed()) {
+			this.waitForEditTrainerMenuOpen();
+		} else {
+			throw new IllegalArgumentException("ERROR: Neither Add Trainer nor Edit Trainer menus are displayed.");
+		}
 		return driver.findElement(By.id("Title"));
 		//return driver.findElement(By.id("trainerTitle"));
 	}
 
 	public WebElement getTierDropdown() {
-		waitForPopupTrainerMenuOpen();
+		if (this.getAddTrainerMenu().isDisplayed()) {
+			this.waitForAddTrainerMenuOpen();
+		} else if (this.getEditTrainerMenu().isDisplayed()) {
+			this.waitForEditTrainerMenuOpen();
+		} else {
+			throw new IllegalArgumentException("ERROR: Neither Add Trainer nor Edit Trainer menus are displayed.");
+		}
 		return driver.findElement(By.id("trainerTier"));
 	}
 
 	//Add Trainer only (Edit Trainer uses 'Update' button)
 	public WebElement getSaveButton() {
-		waitForPopupTrainerMenuOpen();
+		waitForAddTrainerMenuOpen();
 		wait.until(ExpectedConditions.attributeContains(this.getAddTrainerMenu(), "innerHTML", "Add Trainer"));		//Look specifically for Add Trainer menu
 		return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > input:nth-child(1)"));
 	}
@@ -148,10 +149,11 @@ public class TrainerPage {
 
 	//Add and Edit Trainer only (Deactivate Trainer uses 'Cancel')
 	public WebElement getCloseButton() {
-		waitForPopupTrainerMenuOpen();
 		if (this.getAddTrainerMenu().isDisplayed()) {
+			this.waitForAddTrainerMenuOpen();
 			return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > button:nth-child(2)"));
 		} else if (this.getEditTrainerMenu().isDisplayed()) {
+			this.waitForEditTrainerMenuOpen();
 			return driver.findElement(By.cssSelector("#editTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > button:nth-child(2)"));
 		} else {
 			throw new IllegalArgumentException("ERROR: Neither Add Trainer nor Edit Trainer menus are displayed.");
@@ -159,10 +161,11 @@ public class TrainerPage {
 	}
 
 	public WebElement getGrayX() {
-		waitForPopupTrainerMenuOpen();
 		if (this.getAddTrainerMenu().isDisplayed()) {
+			this.waitForAddTrainerMenuOpen();
 			return driver.findElement(By.cssSelector("#createTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(1)"));		
 		} else if (this.getEditTrainerMenu().isDisplayed()) {
+			this.waitForEditTrainerMenuOpen();
 			return driver.findElement(By.cssSelector("#editTrainerModal > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > button:nth-child(1)"));
 		} else {
 			throw new IllegalArgumentException("ERROR: Neither Add Trainer nor Edit Trainer menus are displayed.");
@@ -172,7 +175,13 @@ public class TrainerPage {
 
 	//trainerModalLabel is in Create Trainer, Update Trainer, and Deactivate Trainer menus
 	public WebElement getTrainerModalLabel() {
-		waitForPopupTrainerMenuOpen();
+		if (this.getAddTrainerMenu().isDisplayed()) {
+			this.waitForAddTrainerMenuOpen();
+		} else if (this.getEditTrainerMenu().isDisplayed()) {
+			this.waitForEditTrainerMenuOpen();
+		} else {
+			throw new IllegalArgumentException("ERROR: Neither Add Trainer nor Edit Trainer menus are displayed.");
+		}
 		return driver.findElement(By.id("trainerModalLabel"));
 	}
 
