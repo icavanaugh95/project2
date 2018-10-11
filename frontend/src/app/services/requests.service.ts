@@ -39,4 +39,8 @@ export class RequestsService {
   runNavBarTests():Observable<any>{
     return this.http.get("http://54.174.104.191:8080/Project2/Servlet/NavBarTests");
   }
+
+  runAssessBatchTests():Observable<any>{
+    return this.http.get("http://54.174.104.191:8080/Project2/Servlet/AssessBatchTests");
+  }
 }

@@ -16,12 +16,13 @@ export class AppComponent {
   info = "";
 
   // You probably need a variable for the output
-  qualityAuditResults = "Nothing right now :(";
+  qualityAuditResults = "Nothing yet :(";
   protractorResults = "Nothing yet :(";
   createBatchResults = "Nothing yet :(";
   manageBatchResults = "Nothing yet :(";
   trainerResults = "Nothing yet :(";
   navBarResults = "Nothing yet :(";
+  assessBatchResults = "Nothing yet :(";
 
   data:Observable<any> = this.requestService.getSomething();
 
@@ -32,6 +33,7 @@ export class AppComponent {
   manageBatch:Observable<any> = this.requestService.runManageBatch();
   trainerTests:Observable<any> = this.requestService.runTrainerTests();
   navBarTests:Observable<any> = this.requestService.runNavBarTests();
+  assessBatch:Observable<any> = this.requestService.runAssessBatchTests();
 
   getData(){
     this.data.subscribe((resp) => { 
@@ -117,5 +119,19 @@ export class AppComponent {
       // failure
       this.navBarResults = err.error.text;
     });
-  }
+  };
+
+  getAssessBatchResults(){
+    this.assessBatchResults = "Let me get that for you";
+    this.assessBatch.subscribe((resp) => {
+      // success
+      this.assessBatchResults = resp;
+      console.log(this.assessBatchResults);
+    }, (err) => {
+      // failure
+      this.assessBatchResults = err.error.text;
+
+    });
+  };
+
 }

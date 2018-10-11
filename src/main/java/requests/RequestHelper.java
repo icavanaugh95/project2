@@ -115,12 +115,9 @@ public class RequestHelper {
 			buf.close();
 			pr.destroy();
 		} else if(uri.equals("/Project2/Servlet/TrainerTests")) {
-			// NGCucumberRunner.java
 			System.out.println("Run Cucumber Trainer Tests......");
 			TestNG testng = new TestNG();
-			
-			//path to xml
-//			suites.add("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\test\\resources\\testngCreateBatch.xml"); 
+			 
 			testng.setVerbose(10);
 			testng.setTestClasses(new Class[] {cucumberclasses.NGCucumberRunner.class});
 			testng.run();
@@ -135,19 +132,34 @@ public class RequestHelper {
 			response.getWriter().append(data);
 			
 			
-		} else if(uri.equals("/Project2/Servlet/NavBarTests")) {
-			// NGCucumberRunnerNavBar.java
-			
+		} else if(uri.equals("/Project2/Servlet/NavBarTests")) {		
 			System.out.println("Run Cucumber Nav Bar Tests......");
 			TestNG testng = new TestNG();
 			
-			//path to xml
-//			suites.add("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\test\\resources\\testngCreateBatch.xml"); 
 			testng.setVerbose(10);
 			testng.setTestClasses(new Class[] {cucumberclasses.NGCucumberRunnerNavBar.class});
 			testng.run();
 			
 			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\emailable-report.html");
+			
+			BufferedReader br = new BufferedReader(new FileReader(f));
+			String line = "", data = "";
+			while((line = br.readLine()) != null) {
+				data += line + "\n";
+			}
+			response.getWriter().append(data);
+		} else if(uri.equals("/Project2/Servlet/AssessBatchTests")) {
+			System.out.println("Run TestNG Assess Batch Tests......");
+			TestNG testng = new TestNG();
+			List<String> suites = new ArrayList<String>();;
+			
+			//path to xml
+			suites.add("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\test\\resources\\testngAssessBatch.xml"); 
+			testng.setVerbose(10);
+			testng.setTestSuites(suites);
+			testng.run();
+			
+			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Assess Batch Page\\Assess Batch page.html");
 			
 			BufferedReader br = new BufferedReader(new FileReader(f));
 			String line = "", data = "";
