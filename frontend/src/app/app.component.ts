@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RequestsService } from './services/requests.service';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
@@ -8,14 +10,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private requestService: RequestsService) {}
+  constructor(private requestService: RequestsService, private http: HttpClient) {}
 
   title = 'Project 2 Front End';
   info = "Nothing yet";
 
   // You probably need a variable for the output
   qualityAuditResults = "Nothing right now :(";
-  protractorResults = "Nothing yet :(";
+  protractorResults;
 
   data:Observable<any> = this.requestService.getSomething();
 
@@ -57,13 +59,12 @@ export class AppComponent {
 
 
   getProtractorResults(){
-    this.protractorResults = "Let me get that for you";
-
     this.protractor.subscribe((resp) => {
-      console.log(resp);
+      // success
       this.protractorResults = resp;
+      console.log(this.protractorResults);
     }, (err) => {
-      console.log(err);
+      // failure
       this.protractorResults = err.error.text;
     });
   }
