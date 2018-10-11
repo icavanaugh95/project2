@@ -94,14 +94,21 @@ public class ManageBatchPage {
 	}
 	
 	public WebElement getSkillType() {
-		return driver.findElement(By.cssSelector("#skillType"));
+        WebDriverWait wait1 = new WebDriverWait(driver, 20);
+        wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#skillType")));
+		return driver.findElement(By.cssSelector("#skillType > option:nth-child(2)"));
 	}
 	
 	public WebElement getTrainer() {
-		return driver.findElement(By.cssSelector("#trainer"));
+        WebDriverWait wait1 = new WebDriverWait(driver, 20);
+        wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#trainer")));
+		return driver.findElement(By.cssSelector("#trainer > option:nth-child(2)"));
 	}
 	
+	
 	public WebElement getStartDate() {
+	    WebDriverWait wait1 = new WebDriverWait(driver, 20);
+        wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#start-date")));
 		return driver.findElement(By.cssSelector("#start-date > input"));
 	}
 	
@@ -112,24 +119,45 @@ public class ManageBatchPage {
 	}
 
 	public WebElement getTrainingType() {
-		return driver.findElement(By.cssSelector("#trainingType"));
+		 WebDriverWait wait1 = new WebDriverWait(driver, 20);
+	     wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#trainingType")));
+		return driver.findElement(By.cssSelector("#trainingType > option:nth-child(2)"));
 	}
 
 	public WebElement getLocation() {
-		return driver.findElement(By.cssSelector("#location"));
+		 WebDriverWait wait1 = new WebDriverWait(driver, 20);
+	     wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#location")));
+		return driver.findElement(By.cssSelector("#location > optgroup:nth-child(2) > option"));
 	}
 	
 	public WebElement getCoTrainer() {
-		return driver.findElement(By.cssSelector("#co-trainer"));
+		 WebDriverWait wait1 = new WebDriverWait(driver, 20);
+	     wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#co-trainer")));
+		return driver.findElement(By.cssSelector("#co-trainer > option:nth-child(3)"));
+	}
+	
+	public WebElement getCoTrainer2() {
+		 WebDriverWait wait1 = new WebDriverWait(driver, 20);
+	     wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#co-trainer")));
+		return driver.findElement(By.cssSelector("#co-trainer > option:nth-child(4)"));
 	}
 	
 	public WebElement getEndDate() {
+		 WebDriverWait wait1 = new WebDriverWait(driver, 20);
+	     wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#end-date")));
 		return driver.findElement(By.cssSelector("#end-date > input"));
 	}
 	public WebElement getPassingGrade() {
+		 WebDriverWait wait1 = new WebDriverWait(driver, 20);
+	     wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#createBatchModal > div > div > div.modal-body > div:nth-child(5) > div:nth-child(2)")));
 		return driver.findElement(By.cssSelector("#borderlineGrade"));
 	}
 	
+	public WebElement getSaveBatch() {
+		WebDriverWait wait1 = new WebDriverWait(driver, 20);
+		wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#createBatchModal > div > div > div.modal-footer")));
+		return driver.findElement(By.cssSelector("#createBatchModal > div > div > div.modal-footer > input"));
+	}
 
 		
 
