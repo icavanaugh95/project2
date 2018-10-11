@@ -114,6 +114,29 @@ public class RequestHelper {
 			
 			buf.close();
 			pr.destroy();
+		} else if(uri.equals("/Project2/Servlet/TrainerTests")) {
+			// NGCucumberRunner.java
+			System.out.println("Run TestNG Create Batch Tests......");
+			TestNG testng = new TestNG();
+			
+			//path to xml
+//			suites.add("C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\src\\test\\resources\\testngCreateBatch.xml"); 
+			testng.setVerbose(10);
+			testng.setTestClasses(new Class[] {cucumberclasses.NGCucumberRunner.class});
+			testng.run();
+			
+			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\emailable-report.html");
+			
+			BufferedReader br = new BufferedReader(new FileReader(f));
+			String line = "", data = "";
+			while((line = br.readLine()) != null) {
+				data += line + "\n";
+			}
+			response.getWriter().append(data);
+			
+			
+		} else if(uri.equals("/Project2/Servlet/NavBarTests")) {
+			// NGCucumberRunnerNavBar.java
 		}
 	}
 
