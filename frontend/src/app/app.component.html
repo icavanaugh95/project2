@@ -17,3 +17,9 @@
 
 <button (click) = "getManageBatchResults()">Run Manage Batch Tests</button>
 <pre [innerHTML]="manageBatchResults" *ngIf="manageBatchResults"></pre><br>
+
+<button (click) = "getTrainerTestResults()">Run Trainer Tests</button>
+<pre [innerHTML]="trainerResults" *ngIf="trainerResults"></pre><br>
+
+<button (click) = "getNavBarResults()">Run Nav Bar Tests</button>
+<pre [innerHTML]="navBarResults" *ngIf="navBarResults"></pre><br>

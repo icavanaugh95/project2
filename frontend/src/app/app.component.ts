@@ -20,6 +20,8 @@ export class AppComponent {
   protractorResults = "Nothing yet :(";
   createBatchResults = "Nothing yet :(";
   manageBatchResults = "Nothing yet :(";
+  trainerResults = "Nothing yet :(";
+  navBarResults = "Nothing yet :(";
 
   data:Observable<any> = this.requestService.getSomething();
 
@@ -28,6 +30,8 @@ export class AppComponent {
   protractor:Observable<any> = this.requestService.runProtractorTests();
   createBatch:Observable<any> = this.requestService.runCreateBatch();
   manageBatch:Observable<any> = this.requestService.runManageBatch();
+  trainerTests:Observable<any> = this.requestService.runTrainerTests();
+  navBarTests:Observable<any> = this.requestService.runNavBarTests();
 
   getData(){
     this.data.subscribe((resp) => { 
@@ -89,6 +93,29 @@ export class AppComponent {
       // failure
       this.manageBatchResults = err.error.text;
     });
-
   };
+
+  getTrainerTestResults(){
+    this.trainerResults = "Let me get that for you";
+    this.trainerTests.subscribe((resp) => {
+      // success
+      this.trainerResults = resp;
+      console.log(this.trainerResults);
+    }, (err) => {
+      // failure
+      this.trainerResults = err.error.text;
+    });
+  };
+
+  getNavBarResults(){
+    this.navBarResults = "Let me get that for you";
+    this.navBarTests.subscribe((resp) => {
+      // success
+      this.navBarResults = resp;
+      console.log(this.navBarResults);
+    }, (err) => {
+      // failure
+      this.navBarResults = err.error.text;
+    });
+  }
 }

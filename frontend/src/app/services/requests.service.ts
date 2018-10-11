@@ -31,4 +31,12 @@ export class RequestsService {
   runManageBatch():Observable<any>{
     return this.http.get("http://54.174.104.191:8080/Project2/Servlet/ManageBatch");
   }
+
+  runTrainerTests():Observable<any>{
+    return this.http.get("http://54.174.104.191:8080/Project2/Servlet/TrainerTests");
+  }
+
+  runNavBarTests():Observable<any>{
+    return this.http.get("http://54.174.104.191:8080/Project2/Servlet/NavBarTests");
+  }
 }
