@@ -1,5 +1,5 @@
 # Project 2
-Automation testing with TestNG, Selenium WebDriver, Protract, and Cucumber
+Automation testing with TestNG, Selenium WebDriver, Protractor, and Cucumber
 
 * [Joshua Castor](https://github.com/BlackNinja0001) 
 * [William Parrish](https://github.com/wfparrish) 
