@@ -8,5 +8,12 @@
 <h1>{{ info }}</h1><br>
 <button (click) = "getQualityAuditTestResults()">Run Quality Audit Page Tests</button>
 <pre [innerHTML]="qualityAuditResults" *ngIf="qualityAuditResults"></pre><br>
+
 <button (click) = "getProtractorResults()">Run Protractor Tests</button>
 <pre [innerHTML]="protractorResults" *ngIf="protractorResults"></pre><br>
+
+<button (click) = "getCreateBatchResults()">Run Create Batch Tests</button>
+<pre [innerHTML]="createBatchResults" *ngIf="createBatchResults"></pre><br>
+
+<button (click) = "getmanageBatchResults()">Run Manage Batch Tests</button>
+<pre [innerHTML]="manageBatchResults" *ngIf="manageBatchResults"></pre><br>
