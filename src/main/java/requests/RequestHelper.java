@@ -2,6 +2,7 @@ package requests;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class RequestHelper {
 			response.getWriter().println("Tests are complete");
 //			response.sendRedirect("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Quality Audit Page\\Test page.html");
 		}
-		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {
+		else if(uri.equals("/Project2/Servlet/ProtractorTests")) {			
 			// execute command from command line
 			String cmd = "cmd /c start C:/Users/Administrator/Desktop/protractor";
 			Runtime run = Runtime.getRuntime();
@@ -49,9 +50,26 @@ public class RequestHelper {
 				e.printStackTrace();
 			}
 			
+			// direct filepath to practor output
+			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\webapps\\Project2\\output.txt");
 			
-			response.sendRedirect("https://angular.io/guide/observables");
-			
+//			File f = new File("C:\\Users\\Ian\\Documents\\workspace-sts-3.9.5.RELEASE\\Project2\\src\\main\\webapp\\this.txt");
+			while(!f.exists()) { // waits for file to be created
+				try {
+					System.out.println("File not found");
+					Thread.sleep(1000); // bad but only way to do it :(
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			System.out.println("File found");
+				BufferedReader br = new BufferedReader(new FileReader(f));
+			    String line, data = "";
+			    while ((line = br.readLine()) != null) {
+			       data += line + "\n";
+			    }
+			response.getWriter().append(data);
+			f.delete();
 			pr.destroy();
 		}
 	}
