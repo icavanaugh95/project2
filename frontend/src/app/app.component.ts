@@ -18,6 +18,8 @@ export class AppComponent {
   // You probably need a variable for the output
   qualityAuditResults = "Nothing yet :(";
   protractorResults = "Nothing yet :(";
+  locationResults = "Nothing yet :(";
+  reportResults = "Nothing yet :(";
   createBatchResults = "Nothing yet :(";
   manageBatchResults = "Nothing yet :(";
   trainerResults = "Nothing yet :(";
@@ -29,6 +31,8 @@ export class AppComponent {
   // Assign a variable to the method you created to hit the servlet
   qualityAudit:Observable<any> = this.requestService.runQualityAuditTests();
   protractor:Observable<any> = this.requestService.runProtractorTests();
+  locationTests:Observable<any> = this.requestService.runLocationTests();
+  reportTests:Observable<any> = this.requestService.runReportTests();
   createBatch:Observable<any> = this.requestService.runCreateBatch();
   manageBatch:Observable<any> = this.requestService.runManageBatch();
   trainerTests:Observable<any> = this.requestService.runTrainerTests();
@@ -72,6 +76,30 @@ export class AppComponent {
       this.protractorResults = err.error.text;
     });
   };
+
+  getLocationResults(){
+    this.locationResults = "Let me get that for you";
+    this.locationTests.subscribe((resp) => {
+      // success
+      this.locationResults = resp;
+      console.log(this.locationResults);
+    }, (err) => {
+      // failure
+      this.locationResults = err.error.text;
+    });
+  };
+
+  getReportResults(){
+    this.reportResults = "Let me get that for you";
+    this.reportTests.subscribe((resp) => {
+      // success
+      this.reportResults = resp;
+      console.log(this.reportResults);
+    }, (err) => {
+      // failure
+      this.reportResults = err.error.text;
+    });
+  }
 
   getCreateBatchResults(){
     this.createBatchResults = "Let me get that for you";

@@ -43,8 +43,6 @@ public class RequestHelper {
 				data += line + "\n";
 			}
 			response.getWriter().append(data);
-//			response.getWriter().println("Tests are complete");
-//			response.sendRedirect("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\bin\\test-output\\Quality Audit Page\\Test page.html");
 		}else if(uri.equals("/Project2/Servlet/CreateBatch")){
 			System.out.println("Run TestNG Create Batch Tests......");
 			TestNG testng = new TestNG();
@@ -86,12 +84,11 @@ public class RequestHelper {
 			}
 			response.getWriter().append(data);
 			
-		}else if(uri.equals("/Project2/Servlet/ProtractorTests")) {			
+		}else if(uri.equals("/Project2/Servlet/LocationTests")) {			
 			// execute command from command line
 
-//			String cmd = "cmd /c protractor C:\\Users\\Ian\\Documents\\workspace-sts-3.9.5.RELEASE\\Project2\\protractorTests\\conf.js";
-
-			String cmd = "cmd /c chdir C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests & C:\\Users\\Administrator\\AppData\\Roaming\\npm\\protractor conf.js";
+			String cmd = "cmd /c chdir C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests & "
+					+ "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\protractor locationConf.js";
 			Runtime run = Runtime.getRuntime();
 			System.out.println("Before exe");
 			Process pr = run.exec(cmd);
@@ -114,7 +111,61 @@ public class RequestHelper {
 			
 			buf.close();
 			pr.destroy();
-		} else if(uri.equals("/Project2/Servlet/TrainerTests")) {
+		} else if(uri.equals("/Project2/Servlet/CategoryTests")) {			
+			// execute command from command line
+
+			String cmd = "cmd /c chdir C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests & "
+					+ "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\protractor categoryConf.js";
+			Runtime run = Runtime.getRuntime();
+			System.out.println("Before exe");
+			Process pr = run.exec(cmd);
+			System.out.println("After run");
+			
+			try {
+				pr.waitFor();
+				System.out.println("After for");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream())); // gets protractor output
+			String str = "", data = "";
+			while ((str = buf.readLine()) != null) {
+				data += str + "\n"; // puts in a formatted string
+			}
+		
+			response.getWriter().append(data); // send protractor data
+			
+			buf.close();
+			pr.destroy();
+		}else if(uri.equals("/Project2/Servlet/ReportTests")) {			
+			// execute command from command line
+
+			String cmd = "cmd /c chdir C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests &"
+					+ " C:\\Users\\Administrator\\AppData\\Roaming\\npm\\protractor reportConf.js";
+			Runtime run = Runtime.getRuntime();
+			System.out.println("Before exe");
+			Process pr = run.exec(cmd);
+			System.out.println("After run");
+			
+			try {
+				pr.waitFor();
+				System.out.println("After for");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream())); // gets protractor output
+			String str = "", data = "";
+			while ((str = buf.readLine()) != null) {
+				data += str + "\n"; // puts in a formatted string
+			}
+		
+			response.getWriter().append(data); // send protractor data
+			
+			buf.close();
+			pr.destroy();
+		}else if(uri.equals("/Project2/Servlet/TrainerTests")) {
 			System.out.println("Run Cucumber Trainer Tests......");
 			TestNG testng = new TestNG();
 			 
