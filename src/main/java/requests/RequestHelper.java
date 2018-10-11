@@ -51,33 +51,34 @@ public class RequestHelper {
 				e.printStackTrace();
 			}
 			BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
-			String str = "";
+			String str = "", data = "";
 			while ((str = buf.readLine()) != null) {
-				System.out.println(str);
+				data += str + "\n";
 			}
 			// direct filepath to practor output
-			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\webapps\\Project2\\output.txt");
-			
-//			File f = new File("C:\\Users\\Ian\\Documents\\workspace-sts-3.9.5.RELEASE\\Project2\\src\\main\\webapp\\this.txt");
-			while(!f.exists()) { // waits for file to be created
-				try {
-					System.out.println("File not found");
-					Thread.sleep(1000); // bad but only way to do it :(
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-			System.out.println("File found");
-			BufferedReader br = new BufferedReader(new FileReader(f));
-			String line, data = "";
-			while ((line = br.readLine()) != null) {
-			       data += line + "\n";
-			}
-			
+//			File f = new File("C:\\Users\\Administrator\\Desktop\\apache-tomcat-8.5.34\\webapps\\Project2\\output.txt");
+//			
+////			File f = new File("C:\\Users\\Ian\\Documents\\workspace-sts-3.9.5.RELEASE\\Project2\\src\\main\\webapp\\this.txt");
+//			while(!f.exists()) { // waits for file to be created
+//				try {
+//					System.out.println("File not found");
+//					Thread.sleep(1000); // bad but only way to do it :(
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//			System.out.println("File found");
+//			BufferedReader br = new BufferedReader(new FileReader(f));
+//			String line, data = "";
+//			while ((line = br.readLine()) != null) {
+//			       data += line + "\n";
+//			}
+//			
 			response.getWriter().append(data);
 			
-			br.close();
-			f.delete();
+			buf.close();
+//			br.close();
+//			f.delete();
 			pr.destroy();
 		}
 	}
