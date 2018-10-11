@@ -20,6 +20,7 @@ import pages.HomePage;
 import pages.MainPage;
 import pages.ManageBatchPage;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
@@ -113,6 +114,10 @@ public class CreateBatchTest {
 			manage.getSaveBatch().click();
 			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#createBatchModal > div > div > div.modal-footer > input")));
 	
+	}
+	@AfterSuite
+	public void cleanup() {
+		driver.quit();
 	}
 }
 

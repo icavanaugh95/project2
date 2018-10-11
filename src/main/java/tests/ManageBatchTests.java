@@ -20,6 +20,7 @@ import pages.HomePage;
 import pages.MainPage;
 import pages.ManageBatchPage;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
@@ -274,6 +275,11 @@ public class ManageBatchTests {
 		public static Object[][] nextBatchItems10() {
 
 			return new Object[][] { { "0" } };
+		}
+		
+		@AfterSuite
+		public void cleanup() {
+			driver.quit();
 		}
 		
 		
