@@ -44,12 +44,15 @@ public class RequestHelper {
 //			String cmd = "cmd /c start C:/Users/Administrator/Desktop/protractor";
 //			String cmd = "cmd /c protractor C:\\Users\\Ian\\Documents\\workspace-sts-3.9.5.RELEASE\\Project2\\protractorTests\\conf.js";
 
-			String cmd = "cmd /c chdir C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests C:\\Users\\Administrator\\AppData\\Roaming\\npm\\protractor conf.js";
+			String cmd = "cmd /c chdir C:\\Users\\Administrator\\.jenkins\\workspace\\Project 2\\protractorTests & C:\\Users\\Administrator\\AppData\\Roaming\\npm\\protractor conf.js";
 			Runtime run = Runtime.getRuntime();
+			System.out.println("Before exe");
 			Process pr = run.exec(cmd);
+			System.out.println("After run");
 			
 			try {
 				pr.waitFor();
+				System.out.println("After for");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
